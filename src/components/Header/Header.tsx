@@ -1,0 +1,17 @@
+import './header.css';
+
+import React from 'react';
+
+const Header = (props: any) => {
+  return (
+    <div className = "main-header">
+      <div className = "growwgram">
+        GrowwGram
+      </div>
+      <div className = "button-tray">
+      <span className="material-icons material-icons-outlined explore">explore</span>
+      </div>
+    </div>
+  );
+}
+export default Header;

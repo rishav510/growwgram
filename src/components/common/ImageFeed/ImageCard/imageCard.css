@@ -1,0 +1,146 @@
+@import "../../../../app.css";
+
+.user-profile-pic{
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.user-header-flex {
+  display:flex;
+  align-items: center;
+}
+.post-header{
+  border: 1px solid var(--color-border-light);
+  padding: 16px;
+  vertical-align: middle;
+}
+.card-container{
+  width: 600px;
+  font-family: sans-serif;
+  font-size: medium;
+  box-sizing: border-box;
+  margin: 16px 0;
+}
+.user-header-text{
+  margin-left: 16px;
+}
+.username{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.location{
+  font-size: 0.90em;
+  margin-top: 4px;
+  color: var(--color-text-gray);
+}
+
+.image{
+  width: 600px;
+  overflow: hidden;
+  margin: none;
+
+}
+
+.image-container{
+  max-height: 754px;
+  overflow: hidden;
+  padding: 0;
+
+}
+
+.button-tray{
+  display: flex;
+  margin: 8px 0 0;
+  padding: 0 16px;
+  font-size: 32px;
+}
+
+.heart, .share, .comment, .bookmark{
+  font-size: 32px;
+  margin: 4px 16px 0 0 ;
+  cursor: pointer;
+}
+
+.bookmark{
+  margin: 4px 0 0 0;
+}
+.row{
+  display: block;
+}
+
+.bookmark{
+  padding: 0;
+}
+
+.post-footer{
+  margin-top: -4px;
+  border: 1px solid var(--color-border-light);
+  border-top: 2px solid rgb(239,239,239);
+}
+
+.bookmark-container{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.caption-container{
+  margin-left: 16px;
+  padding-bottom: 16px;
+  padding-right: 16px;
+}
+
+.space-right{
+  margin-right: 0.2em;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.likes{
+  display: flex;
+  padding: 16px;
+}
+
+.date{
+  font-size: 0.90em;
+  color: var(--color-text-gray);
+  padding: 0 0 16px 16px;
+}
+
+.number-of-likes{
+  margin-right: 0.2em;
+}
+
+.image-placeholder{
+  width: 600px;
+  height: 754px;
+  z-index: 2;
+}
+
+@media only screen and (max-width: 600px){
+
+  .card-container{
+    width: 100vw;
+    margin: 0;
+  }
+  .image-container{
+    width: inherit;
+  }
+  .image{
+    width: inherit;
+  }
+  .user-profile-pic{
+    width: 32px;
+    height: 32px;
+  }
+}
