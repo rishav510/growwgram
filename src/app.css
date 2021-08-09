@@ -1,0 +1,14 @@
+:root {
+  --color-border-light: rgb(223,223,223);
+  --color-text-gray: rgb(127,127,127);
+}
+
+.newsfeed-wrapper{
+  display:flex;
+  justify-content: center;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
