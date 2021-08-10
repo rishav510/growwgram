@@ -21,6 +21,7 @@ type ImageUrls = {
 }
 
 type User = {
+  username: string,
   instagram_username: string,
   profile_image: ProfileImage,
 }

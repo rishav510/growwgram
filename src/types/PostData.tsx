@@ -10,6 +10,7 @@ type PostData = {
   views: number,
   likes: number,
   likedByUser: boolean,
+  apiUsername: string,
 }
 
 

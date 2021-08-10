@@ -4,8 +4,11 @@ import 'react-placeholder/lib/reactPlaceholder.css';
 import React from 'react';
 
 import { DateTime } from 'luxon';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import fetchUserDetails
+  from '../../../../stateManagement/actionCreators/fetchUserDetails';
 import PostData from '../../../../types/PostData';
 
 class ImageCard extends React.PureComponent <Props, State> {
@@ -33,7 +36,7 @@ class ImageCard extends React.PureComponent <Props, State> {
       <div className="post-header">
         <div className="user-header-flex">
           <Link to = "/user">
-            <img src={this.props.data?.profilePic} className="user-profile-pic" alt={this.props.data?.alt_description} />
+            <img src={this.props.data?.profilePic} className="user-profile-pic" alt={this.props.data?.alt_description} onClick = {() => {this.props.fetchUserDetails(this.props.data?.username)}}/>
           </Link>
           <div className = "user-header-text">
             <Link to = "/user">
@@ -96,13 +99,17 @@ class ImageCard extends React.PureComponent <Props, State> {
   }
 }
 
+
+
 type State = {
   ready: boolean,
 }
 
 type Props = {
   data: PostData,
+  fetchUserDetails: Function,
 }
 
 
-export default ImageCard;
+
+export default connect (null, {fetchUserDetails})(ImageCard);

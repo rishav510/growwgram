@@ -1,0 +1,110 @@
+body{
+
+}
+
+.user-page-header-flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user-page-profile-pic-container{
+  margin: 0 30px 0 0 ;
+  flex-grow: 1;
+}
+
+.user-page-username{
+  display: inline-block;
+  font-size: 2em;
+  font-family: sans-serif;
+  margin-right: 16px;
+}
+
+.user-page-details-top{
+  display:flex;
+  margin: 0 0 20px;
+}
+
+.follow-button,.suggested-bar-button,.ellipsis-button{
+  font-size: 1em;
+  margin-right: 10px
+}
+
+.follow-button{
+  padding: 0 20px;
+  background-color: rgb(0, 207, 128);
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+.suggested-bar-button{
+  padding: 0 8px;
+  background-color: rgb(0, 207, 128);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.ellipsis-button{
+  padding: 0 10px;
+  border:none;
+  background-color: transparent;
+}
+
+.user-page-details{
+  flex-grow: 2;
+  display:flex;
+  flex-direction:column;
+}
+
+.user-page-wrapper{
+  margin:auto;
+  max-width: 75%;
+  margin-top: 5%;
+}
+
+.user-page-details-middle{
+  display: flex;
+  flex-direction: vertical;
+  justify-content: flex-start;
+  font-family: sans-serif;
+  font-size: medium;
+  margin: 0 0 20px;
+}
+
+.user-page-profile-pic{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+}
+
+.user-page-stat-data{
+  margin: 0 40px 0 0;
+}
+
+.user-page-fullname{
+  font-family: sans-serif;
+  margin: 0 0 20px;
+}
+
+.user-page-posts-header{
+  font-size: 36px;
+  display: flex;
+  margin: 16px 0 0 0;
+  padding: 16px 0;
+  border-top: 1px solid gray;
+  justify-content: center;
+  
+}
+
+.posts-display-option{
+  display: block;
+  margin: 0 16px 0 16px;
+}
+
+.user-page-bio{
+  font-family: sans-serif;
+}

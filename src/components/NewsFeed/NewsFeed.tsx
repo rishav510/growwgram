@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import fetchResponseObject
   from '../../stateManagement/actionCreators/fetchResponseObject';
+import fetchUserDetails
+  from '../../stateManagement/actionCreators/fetchUserDetails';
 import ImageFeed from '../common/ImageFeed/ImageFeed';
 
 class NewsFeed extends React.Component <Props,State>{
@@ -40,12 +42,12 @@ type State = {
 };
 
 const mapStateToProps = (state:any) => {
-  console.log(state);
+  
   return {
     postDataList: state.postDataList,
   }
 
 }
 
-export default connect (mapStateToProps, {fetchResponseObject})(NewsFeed);
+export default connect (mapStateToProps, {fetchResponseObject,fetchUserDetails})(NewsFeed);
 

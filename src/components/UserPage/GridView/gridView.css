@@ -1,0 +1,10 @@
+.grid-container{
+  display: flex;
+  flex-basis: 33%;
+}
+
+.grid-view-photo{
+  width: 200px;
+
+  overflow: hidden;
+}
