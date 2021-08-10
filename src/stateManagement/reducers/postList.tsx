@@ -21,12 +21,13 @@ const getPostData = (responseDataElement: ResponseDataElement) => {
     location:{title}, 
     urls:{raw}, 
     user: {
-      instagram_username, 
+      username, 
       profile_image:{medium}
     }, 
     likes, 
     liked_by_user, 
-    views
+    views,
+
   } = responseDataElement;
 
   return {
@@ -36,7 +37,8 @@ const getPostData = (responseDataElement: ResponseDataElement) => {
     caption: description, 
     location: title, 
     imageURL: raw, 
-    username: instagram_username, 
+    apiUsername: username,
+    username, 
     profilePic: medium, 
     views, 
     likes, 
