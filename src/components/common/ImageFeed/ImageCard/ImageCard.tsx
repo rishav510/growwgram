@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 
 import fetchUserDetails
   from '../../../../stateManagement/actionCreators/fetchUserDetails';
+import fetchUserPhotos
+  from '../../../../stateManagement/actionCreators/fetchUserPhotos';
 import PostData from '../../../../types/PostData';
 
 class ImageCard extends React.PureComponent <Props, State> {
@@ -36,7 +38,9 @@ class ImageCard extends React.PureComponent <Props, State> {
       <div className="post-header">
         <div className="user-header-flex">
           <Link to = "/user">
-            <img src={this.props.data?.profilePic} className="user-profile-pic" alt={this.props.data?.alt_description} onClick = {() => {this.props.fetchUserDetails(this.props.data?.username)}}/>
+            <img src={this.props.data?.profilePic} className="user-profile-pic" alt={this.props.data?.alt_description} onClick = {() => {
+              this.props.fetchUserPhotos(this.props.data?.username,1);
+              this.props.fetchUserDetails(this.props.data?.username)}}/>
           </Link>
           <div className = "user-header-text">
             <Link to = "/user">
@@ -108,8 +112,9 @@ type State = {
 type Props = {
   data: PostData,
   fetchUserDetails: Function,
+  fetchUserPhotos: Function,
 }
 
 
 
-export default connect (null, {fetchUserDetails})(ImageCard);
+export default connect (null, {fetchUserDetails, fetchUserPhotos})(ImageCard);

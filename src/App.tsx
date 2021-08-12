@@ -22,6 +22,10 @@ class App extends React.Component <Props,State>{
     }
   }
 
+  componentDidUpdate = () => {
+    console.log('App component updated ...');
+  }
+
   render(){
     
     return (

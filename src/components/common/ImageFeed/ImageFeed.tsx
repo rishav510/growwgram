@@ -6,9 +6,8 @@ import PostData from '../../../types/PostData';
 import ImageCard from './ImageCard/ImageCard';
 
 class ImageFeed extends React.PureComponent<Props>{
-
   render(){
-    return <div className = "feed">{renderPosts(this.props.data)}ImageFeed</div>;
+    return <div className = "feed">{renderPosts(this.props.data)}</div>
   }
 }
 const renderPosts = (imageDataArray: Array<any>) => {

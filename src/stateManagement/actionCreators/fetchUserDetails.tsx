@@ -1,17 +1,14 @@
 import unsplash from '../../apis/unsplash';
+import deleteCurrentUser from './deleteUserDetails';
 
 const fetchUserDetails = (username: string) => {
   return async (dispatch: any) => {
-    const response = await unsplash.get(`/users/${username}`,{params: {username, count: 10}});
-    const photos = await unsplash.get(`/users/${username}/photos`,{params: {username}})
+    const response = await unsplash.get(`/users/${username}`,{params: {username, count: 10, orderby: 'latest'}});
     console.log("fetchUserDetails response: ", response);
-    console.log("user photos", photos);
+    deleteCurrentUser();
     dispatch({
       type: 'FETCH_USER_DETAILS',
-      payload: {
-        response,
-        photos,
-      }
+      payload: response,
     })
   }
 }

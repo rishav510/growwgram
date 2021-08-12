@@ -1,20 +1,17 @@
 @import '../../app.css';
 
 .main-header{
-
-  width: 895px;
+  width: 100vw;
   display: flex;
-  flex-direction: horizontal;
-  justify-content: flex-start;
   position: fixed;
   top: 0;
   background-color: white;
   color: black;
-  padding: 8px;
-  border-bottom: 1px solid black;
-
+  padding: 8px 0;
+  border-bottom: 1px solid gray;
   align-items: center;
   border-top: none;
+  justify-content: space-between;
 }
 
 .growwgram{
@@ -22,38 +19,41 @@
   font-family: 'Style Script', cursive;
   margin-left: 8px;
 
+
 }
 .main-header-wrapper{
-
-  position: relative;
   display: flex;
+  position: absolute;
+  width: 100vw;
   justify-content: center;
   height: 65px;
 }
 
-.main-header-tray{
-  margin: 0;
-  padding: 0;
-}
+
 
 .explore{
   font-size: 2em;
   cursor: pointer;
-  padding-right: 200px;
-}
-
-.empty{
-  width: 600px;
+  margin-left: -16px;
 }
 
 @media only screen and (min-width: 600px){
   .growwgram{
+    padding-left: 8px;
+    padding-right: 0;
   }
   .explore{
-    padding-right: 16px;
+    font-size: 2em;
+    margin: 0 16px 0 0;
+
   }
   .empty{
   
   }
+  .main-header-wrapper{
+    width: 100vw;
+  }
+
+  
 }
 

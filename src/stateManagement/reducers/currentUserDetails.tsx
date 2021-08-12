@@ -5,8 +5,12 @@ import UserData from '../../types/UserData';
 const currentUserDetails = (userData: UserData | null = null, action: Action) => {
   switch(action.type){
     case 'FETCH_USER_DETAILS': 
-    const newUserData = getNewUser(action.payload.response.data);
+    const newUserData = getNewUser(action.payload.data);
     return newUserData;
+
+    case 'DELETE_CURRENT_USER':
+    return null;
+    
     default:
       return userData;
   }
