@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux';
 
 import currentUserDetails from './currentUserDetails';
-import currentUserPhotos from './currentUserPhotos';
+import currentUserPosts from './currentUserPosts';
+import nextUserPhotosPage from './nextUserPhotosPage';
 import pageLoaded from './pageLoaded';
-import postDataList from './postList';
+import postDataList from './postDataList';
 
 const reducers = combineReducers({
-  currentUserPhotos,
+  currentUserPosts,
   postDataList,
   currentUserDetails,
   pageLoaded,
+  nextUserPhotosPage,
 });
 
 export default reducers;

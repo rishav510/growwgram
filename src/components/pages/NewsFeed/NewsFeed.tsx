@@ -3,24 +3,15 @@ import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
 
-import deleteCurrentUser
-  from '../../stateManagement/actionCreators/deleteUserDetails';
+import deleteCurrentUser from '../../../store/actionCreators/deleteUserDetails';
 import fetchResponseObject
-  from '../../stateManagement/actionCreators/fetchResponseObject';
-import fetchUserDetails
-  from '../../stateManagement/actionCreators/fetchUserDetails';
-import ImageFeed from '../common/ImageFeed/ImageFeed';
+  from '../../../store/actionCreators/fetchResponseObject';
+import fetchUserDetails from '../../../store/actionCreators/fetchUserDetails';
+import PostData from '../../../utils/types/PostData';
+import ReduxState from '../../../utils/types/ReduxState';
+import ImageFeed from '../../common/ImageFeed/ImageFeed';
 
-class NewsFeed extends React.Component <Props,State>{
-
-  constructor(props:Props){
-    super(props);
-    this.state = {
-      imageObject: null,
-      imageDataArray: [],
-
-    }
-  }
+class NewsFeed extends React.Component <Props>{
 
   componentDidMount = () => {
     deleteCurrentUser();
@@ -41,18 +32,15 @@ class NewsFeed extends React.Component <Props,State>{
 
 }
 
-type Props = any;
-type State = {
-  imageObject?: any,
-  imageDataArray?: any,
-};
-
-const mapStateToProps = (state:any) => {
-  
+const mapStateToProps = (state: ReduxState) => {
   return {
     postDataList: state.postDataList,
   }
+}
 
+type Props = {
+  postDataList: Array<PostData>,
+  fetchResponseObject: Function,
 }
 
 export default connect (mapStateToProps, {fetchResponseObject,fetchUserDetails, deleteCurrentUser})(NewsFeed);

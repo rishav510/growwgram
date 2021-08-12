@@ -1,6 +1,6 @@
-import Action from '../../types/Action';
-import { ResponseDataElement } from '../../types/ApiResponseObject';
-import PostData from '../../types/PostData';
+import Action from '../../utils/types/Action';
+import { ResponseDataElement } from '../../utils/types/ApiResponseObject';
+import PostData from '../../utils/types/PostData';
 
 const postDataList = (posts : Array<PostData> = [], action: Action) => {
   switch(action.type){

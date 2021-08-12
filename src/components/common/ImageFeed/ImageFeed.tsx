@@ -2,7 +2,7 @@ import './imageFeed.css';
 
 import React from 'react';
 
-import PostData from '../../../types/PostData';
+import PostData from '../../../utils/types/PostData';
 import ImageCard from './ImageCard/ImageCard';
 
 class ImageFeed extends React.PureComponent<Props>{

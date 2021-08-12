@@ -1,5 +1,6 @@
 import './imageCard.css';
 import 'react-placeholder/lib/reactPlaceholder.css';
+import '../../../../../resources/loading-icon.svg';
 
 import React from 'react';
 
@@ -8,17 +9,16 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import fetchUserDetails
-  from '../../../../stateManagement/actionCreators/fetchUserDetails';
-import fetchUserPhotos
-  from '../../../../stateManagement/actionCreators/fetchUserPhotos';
-import PostData from '../../../../types/PostData';
+  from '../../../../store/actionCreators/fetchUserDetails';
+import fetchUserPhotos from '../../../../store/actionCreators/fetchUserPhotos';
+import PostData from '../../../../utils/types/PostData';
 
 class ImageCard extends React.PureComponent <Props, State> {
 
   constructor(props: Props){
     super(props);
     this.state = {
-      ready: true,
+      ready: false,
     }
   }
   render(){
@@ -33,7 +33,6 @@ class ImageCard extends React.PureComponent <Props, State> {
     );
   }
   renderPostHeader = () => {
-    console.log(this.state);
     return (
       <div className="post-header">
         <div className="user-header-flex">
@@ -55,7 +54,10 @@ class ImageCard extends React.PureComponent <Props, State> {
   renderImageContainer = () => {
     return (
       <div className="image-container">
-        <img className="image"  src={this.props.data?.imageURL} alt={this.props.data?.alt_description} />
+        <div className={`image-loader-container ${this.state.ready? 'transparent' : 'opaque' }`} >
+          <img  src="./loading-icon.svg" alt=""/>
+        </div>
+        <img onLoad = {() => this.handleLoad()} className="image"  src={this.props.data?.imageURL} alt={this.props.data?.alt_description} />
       </div>
     );
   }

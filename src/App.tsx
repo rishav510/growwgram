@@ -6,11 +6,10 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Header from './components/Header/Header';
-import NewsFeed from './components/NewsFeed/NewsFeed';
-import UserPage from './components/UserPage/UserPage';
-import fetchResponseObject
-  from './stateManagement/actionCreators/fetchResponseObject';
+import Header from './components/common/Header/Header';
+import NewsFeed from './components/pages/NewsFeed/NewsFeed';
+import UserPage from './components/pages/UserPage/UserPage';
+import fetchResponseObject from './store/actionCreators/fetchResponseObject';
 
 class App extends React.Component <Props,State>{
 

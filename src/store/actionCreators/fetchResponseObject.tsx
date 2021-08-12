@@ -1,7 +1,7 @@
-import unsplash from '../../apis/unsplash';
+import unsplash from '../../utils/apis/unsplash';
 
 const fetchResponseObject = () => {
-  return async (dispatch : any) => {
+  return async (dispatch : Function) => {
     const response = await unsplash.get('/photos/random', {params: {count: 10}});
     console.log("action creator response",response);
     dispatch({

@@ -1,4 +1,4 @@
-import Action from '../../types/Action';
+import Action from '../../utils/types/Action';
 
 const pageLoaded = (page: number = 0, action: Action) => {
   switch (action.type){
