@@ -3,6 +3,8 @@ import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
 
+import deleteCurrentUser
+  from '../../stateManagement/actionCreators/deleteUserDetails';
 import fetchResponseObject
   from '../../stateManagement/actionCreators/fetchResponseObject';
 import fetchUserDetails
@@ -16,9 +18,13 @@ class NewsFeed extends React.Component <Props,State>{
     this.state = {
       imageObject: null,
       imageDataArray: [],
+
     }
   }
 
+  componentDidMount = () => {
+    deleteCurrentUser();
+  }
   render(){
     
     return (
@@ -49,5 +55,5 @@ const mapStateToProps = (state:any) => {
 
 }
 
-export default connect (mapStateToProps, {fetchResponseObject,fetchUserDetails})(NewsFeed);
+export default connect (mapStateToProps, {fetchResponseObject,fetchUserDetails, deleteCurrentUser})(NewsFeed);
 

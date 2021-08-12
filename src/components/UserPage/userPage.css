@@ -12,12 +12,15 @@ body{
   margin: 0 30px 0 0 ;
   flex-grow: 1;
 }
-
+.user-page-button-tray{
+  display: inherit;
+  margin-left: 16px;
+}
 .user-page-username{
   display: inline-block;
   font-size: 2em;
   font-family: sans-serif;
-  margin-right: 16px;
+  margin: 0
 }
 
 .user-page-details-top{
@@ -60,7 +63,7 @@ body{
 
 .user-page-wrapper{
   margin:auto;
-  max-width: 75%;
+  max-width: 60%;
   margin-top: 5%;
 }
 
@@ -83,6 +86,7 @@ body{
 
 .user-page-stat-data{
   margin: 0 40px 0 0;
+  font-size: 1.2em;
 }
 
 .user-page-fullname{
@@ -97,9 +101,20 @@ body{
   padding: 16px 0;
   border-top: 1px solid gray;
   justify-content: center;
-  
+  align-items: center;
 }
 
+.grid-button, .list-button{
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.selected{
+  background-color: rgb(0, 207, 128);
+  color: white;
+}
 .posts-display-option{
   display: block;
   margin: 0 16px 0 16px;
@@ -107,4 +122,76 @@ body{
 
 .user-page-bio{
   font-family: sans-serif;
+}
+
+@media only screen and (max-width:600px){
+  .user-page-photo-gallery{
+    width: 100vw;
+  }
+  .user-page-details{
+    margin: 20px 0 0 0;
+    width: 100vw;
+
+  }
+  .user-page-profile-pic{
+    left: 16px;
+    height: 75px;
+    width: 75px;
+  }
+  .user-page-profile-pic-container{
+    width: 100%;
+    margin-top: 75px;
+  }
+  .user-page-stat-data{
+    margin: 0;
+    display: none;
+  }
+  .user-page-button-tray{
+    justify-content: center;
+    margin: 0;
+  }
+  .user-page-header-flex{
+
+    width: 100vw;
+    padding: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 40%;
+  }
+  .user-page-details-top{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .user-page-details-bottom{
+    padding-left: 16px;
+    width: 90%;
+  }
+  .user-page-wrapper{
+    margin-left: 0;
+  }
+  .user-page-username{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .user-page-posts-header{
+    width: 100vw;
+  }
+  .post-footer{
+    width: 100%;
+  }
+  .post-header{
+    width: 100%;
+  }
+  .user-feed-list{
+    width: 100vw;
+  }
+  .ellipsis-button{
+    display: none;
+  }
+  .post-header{
+    max-width: 100%;
+  }
 }

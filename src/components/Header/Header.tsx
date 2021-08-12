@@ -9,9 +9,6 @@ const Header = (props: any) => {
         <div className="growwgram">
           GrowwGram
         </div>
-        <div className="empty">
-          
-        </div>
         <div>
           <span className="material-icons material-icons-outlined explore">explore</span>
         </div>

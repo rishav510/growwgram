@@ -1,11 +1,18 @@
 import './userPage.css';
 
+import { useState } from 'react';
+
+import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
 
+import fetchUserPhotos
+  from '../../stateManagement/actionCreators/fetchUserPhotos';
+import ImageFeed from '../common/ImageFeed/ImageFeed';
 import GridView from './GridView/GridView';
 
 const UserPage = (props: any) => {
 
+  const [gridViewSelected, setGridViewSelected] = useState(false);
   const {userData} = props;
   const posts = userData?.photos.length;
   const followers = userData?.followers;
@@ -14,6 +21,7 @@ const UserPage = (props: any) => {
   const lastName = userData?.lastName;
   const profilePic = userData?.profilePic;
   const bio = userData?.bio;
+  
 
   return(
     <div className="user-page-wrapper">
@@ -26,10 +34,12 @@ const UserPage = (props: any) => {
             <section className="user-page-username">
               <span>{userData?.username}</span>
             </section>
-            <button className="follow-button">Follow</button>
-            <button className="suggested-bar-button">
+            <div className ="user-page-button-tray">
+              <button className="follow-button">Follow</button>
+              <button className="suggested-bar-button">
               <span className="material-icons material-icons-outlined">expand_more</span>
             </button>
+            </div>
             <button className="ellipsis-button">
               <span className="material-icons material-icons-outlined">more_horiz</span>
             </button>
@@ -48,11 +58,41 @@ const UserPage = (props: any) => {
         </div>
       </div>
       <div className="user-page-posts-header">
-        <span className="posts-display-option material-icons material-icons-outlined">grid_on</span>
-        <span className="posts-display-option material-icons material-icons-outlined">crop_portrait</span>
+        <span className={`
+          grid-button 
+          posts-display-option 
+          material-icons 
+          material-icons-outlined
+          ${gridViewSelected?'selected':''}
+          `}
+          onClick = {() => {setGridViewSelected(true)}}
+        >grid_on</span>
+        <span className={`
+          list-button 
+          posts-display-option 
+          material-icons 
+          material-icons-outlined
+          ${gridViewSelected?'':'selected'}
+          `}
+          onClick = {() => {setGridViewSelected(false)}}
+        >crop_portrait</span>
       </div>
       <div className="user-page-photo-gallery">
-        <GridView/>
+        {
+        gridViewSelected? 
+        <GridView/> :
+        <div className="user-feed-list">
+        <InfiniteScroll 
+            loadMore = {() => {
+              props.fetchUserPhotos(userData?.username);
+            }}
+            useWindow = {true}
+            hasMore = {true}>
+            {<ImageFeed data = {props.userPhotos}/>}
+          </InfiniteScroll>
+        </div>
+        }
+
       </div>
     </div>
   )
@@ -61,8 +101,8 @@ const UserPage = (props: any) => {
 const mapStateToProps = (state: any) => {
   return {
     userData: state.currentUserDetails,
-
+    userPhotos: state.currentUserPhotos,
   }
 }
 
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps, {fetchUserPhotos})(UserPage);

@@ -8,15 +8,18 @@
 }
 
 .user-header-flex {
+  margin-left: 16px;
   display:flex;
+  flex: 0 1 auto;
   align-items: center;
 }
 .post-header{
   border: 1px solid var(--color-border-light);
-  padding: 16px;
+  padding: 16px 0 !important;
   vertical-align: middle;
 }
 .card-container{
+
   width: 600px;
   font-family: sans-serif;
   font-size: medium;
@@ -44,13 +47,17 @@ a{
 
 .image{
   width: 600px;
+  max-height: 600px;
+  object-fit: cover;
   overflow: hidden;
   margin: none;
 
 }
 
 .image-container{
-  max-height: 754px;
+
+  align-items: center;
+
   overflow: hidden;
   padding: 0;
 
@@ -84,6 +91,7 @@ a{
   margin-top: -4px;
   border: 1px solid var(--color-border-light);
   border-top: 2px solid rgb(239,239,239);
+
 }
 
 .bookmark-container{
@@ -121,26 +129,27 @@ a{
   margin-right: 0.2em;
 }
 
-.image-placeholder{
-  width: 600px;
-  height: 754px;
-  z-index: 2;
-}
 
 @media only screen and (max-width: 600px){
 
   .card-container{
-    width: 100vw;
+    width: 100%;
     margin: 0;
   }
   .image-container{
-    width: inherit;
+    width: 100vw;
   }
   .image{
-    width: inherit;
+    width: 100%;
   }
   .user-profile-pic{
     width: 32px;
     height: 32px;
+  }
+  .post-header{
+    width: 100%;
+  }
+  .user-header-flex{
+    width: 90%;
   }
 }
