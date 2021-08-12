@@ -2,7 +2,7 @@ import './header.css';
 
 import React from 'react';
 
-const Header = (props: any) => {
+const Header = () => {
   return (
     <div className = "main-header-wrapper">
       <div className="main-header">
@@ -14,7 +14,6 @@ const Header = (props: any) => {
         </div>
       </div>
     </div>
-   
   );
 }
 export default Header;

@@ -5,14 +5,17 @@ import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
 
-import fetchUserPhotos
-  from '../../stateManagement/actionCreators/fetchUserPhotos';
-import ImageFeed from '../common/ImageFeed/ImageFeed';
+import fetchUserPhotos from '../../../store/actionCreators/fetchUserPhotos';
+import PostData from '../../../utils/types/PostData';
+import ReduxState from '../../../utils/types/ReduxState';
+import UserData from '../../../utils/types/UserData';
+import ImageFeed from '../../common/ImageFeed/ImageFeed';
 import GridView from './GridView/GridView';
 
-const UserPage = (props: any) => {
+const UserPage = (props: Props) => {
 
   const [gridViewSelected, setGridViewSelected] = useState(false);
+
   const {userData} = props;
   const posts = userData?.photos.length;
   const followers = userData?.followers;
@@ -21,7 +24,6 @@ const UserPage = (props: any) => {
   const lastName = userData?.lastName;
   const profilePic = userData?.profilePic;
   const bio = userData?.bio;
-  
 
   return(
     <div className="user-page-wrapper">
@@ -80,7 +82,7 @@ const UserPage = (props: any) => {
       <div className="user-page-photo-gallery">
         {
         gridViewSelected? 
-        <GridView/> :
+        <GridView data = {props.userPhotos}/> :
         <div className="user-feed-list">
         <InfiniteScroll 
             loadMore = {() => {
@@ -98,11 +100,19 @@ const UserPage = (props: any) => {
   )
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: ReduxState) => {
   return {
     userData: state.currentUserDetails,
-    userPhotos: state.currentUserPhotos,
+    userPhotos: state.currentUserPosts,
+    nextPage: state.nextUserPhotosPage,
   }
 }
 
+type Props = {
+  userData: UserData,
+  userPhotos: Array<PostData>,
+  fetchUserPhotos: Function,
+};
+
 export default connect(mapStateToProps, {fetchUserPhotos})(UserPage);
+

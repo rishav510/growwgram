@@ -5,19 +5,14 @@ import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
 
-import fetchUserPhotos
-  from '../../../stateManagement/actionCreators/fetchUserPhotos';
+import fetchUserPhotos from '../../../../store/actionCreators/fetchUserPhotos';
 import updatePageNumber
-  from '../../../stateManagement/actionCreators/updatePageNumber';
+  from '../../../../store/actionCreators/updatePageNumber';
+import PostData from '../../../../utils/types/PostData';
+import ReduxState from '../../../../utils/types/ReduxState';
 
 class GridView extends React.PureComponent <Props, State>{
 
-  constructor(props: Props){
-    super(props);
-    this.state = {
-      currentPage: 0,
-    }
-  }
   render(){
     return (
       <InfiniteScroll
@@ -27,10 +22,9 @@ class GridView extends React.PureComponent <Props, State>{
       >
         <div className="grid-wrapper">
           <div className="grid-container">
-            {renderPhotos(this.props.photos)}
+            {renderPhotos(this.props.data)}
           </div>
         </div>
-
       </InfiniteScroll>
   
     );
@@ -42,22 +36,25 @@ class GridView extends React.PureComponent <Props, State>{
   
 }
 
-const renderPhotos = (photos: Array<any> | null) => {
-  return photos?.map(photo => <div className = "grid-view-photo-container" key={photo.id}>
-    <img className = "grid-view-photo" src = {photo.urls.raw} alt = "something"/>
+const renderPhotos = (posts: Array<PostData>) => {
+  console.log(posts);
+  return posts?.map(post => <div className = "grid-view-photo-container" key={post.id}>
+    <img className = "grid-view-photo" src = {post.imageURL} alt = {post.alt_description}/>
     </div>)
 }
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: ReduxState) => {
   return {
-    photos: state.currentUserPhotos,
     username: state.currentUserDetails?.username,
-    page: state.pageLoaded,
   }
 }
 export default connect (mapStateToProps, {fetchUserPhotos, updatePageNumber})(GridView);
 
 
-type Props = any;
+type Props = {
+  data: Array<PostData>,
+  username: string,
+  fetchUserPhotos: Function,
+}
 type State = {
   currentPage: number,
 }

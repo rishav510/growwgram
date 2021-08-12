@@ -1,4 +1,4 @@
-@import '../../app.css';
+@import '../../../app.css';
 
 .main-header{
   width: 100vw;
@@ -12,14 +12,14 @@
   align-items: center;
   border-top: none;
   justify-content: space-between;
+  z-index: 2;
 }
 
 .growwgram{
   font-size: 2em;
   font-family: 'Style Script', cursive;
   margin-left: 8px;
-
-
+  padding-left: 16px;
 }
 .main-header-wrapper{
   display: flex;
@@ -34,19 +34,15 @@
 .explore{
   font-size: 2em;
   cursor: pointer;
-  margin-left: -16px;
+  margin: 0 16px 0 0;
 }
 
 @media only screen and (min-width: 600px){
   .growwgram{
-    padding-left: 8px;
+    padding-left: 16px;
     padding-right: 0;
   }
-  .explore{
-    font-size: 2em;
-    margin: 0 16px 0 0;
 
-  }
   .empty{
   
   }

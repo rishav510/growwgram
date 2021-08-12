@@ -1,4 +1,4 @@
-import unsplash from '../../apis/unsplash';
+import unsplash from '../../utils/apis/unsplash';
 import deleteCurrentUser from './deleteUserDetails';
 
 const fetchUserDetails = (username: string) => {
