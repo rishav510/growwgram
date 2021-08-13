@@ -7,17 +7,23 @@
   overflow: hidden;
 }
 
+.red{
+  color: var(--color-red);
+}
+
 .user-header-flex {
   margin-left: 16px;
   display:flex;
   flex: 0 1 auto;
   align-items: center;
 }
+
 .post-header{
   border: 1px solid var(--color-border-light);
   padding: 16px 0 !important;
   vertical-align: middle;
 }
+
 .card-container{
   width: 600px;
   font-family: sans-serif;
@@ -25,9 +31,11 @@
   box-sizing: border-box;
   margin: 16px 0;
 }
+
 .user-header-text{
   margin-left: 16px;
 }
+
 .username{
   display: inline-block;
   vertical-align: middle;
@@ -36,6 +44,10 @@
 a{
   text-decoration: none;
   color: black;
+}
+
+a:hover{
+  text-decoration: underline;
 }
 
 .location{
@@ -50,16 +62,15 @@ a{
   object-fit: cover;
   overflow: hidden;
   margin: none;
-
 }
 
 .image-container{
-
   align-items: center;
   position: relative;
   overflow: hidden;
   padding: 0;
   min-height: 200px;
+
 }
 
 .image-loader-container{
@@ -73,6 +84,7 @@ a{
   background-position: center;
   transition: 0.3s;
 }
+
 .button-tray{
   display: flex;
   margin: 8px 0 0;
@@ -84,10 +96,22 @@ a{
   opacity: 0;
 }
 
+.heart{
+  transition-duration: 0.3s;
+}
+
 .heart, .share, .comment, .bookmark{
   font-size: 32px;
   margin: 4px 16px 0 0 ;
   cursor: pointer;
+}
+
+.share:hover, .comment:hover, .bookmark:hover{
+  transform: scale(1.1);
+}
+
+.highlight-icon{
+  color: var(--color-medium-spring-green);
 }
 
 .bookmark{
@@ -104,8 +128,7 @@ a{
 .post-footer{
   margin-top: -4px;
   border: 1px solid var(--color-border-light);
-  border-top: 2px solid rgb(239,239,239);
-
+  border-top: 2px solid var(--color-post-border-light);
 }
 
 .bookmark-container{
@@ -157,7 +180,7 @@ a{
     width: 100vw;
   }
   .image{
-    width: 100%;
+    width: 100vw;
   }
   .user-profile-pic{
     width: 32px;

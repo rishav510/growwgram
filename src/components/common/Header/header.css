@@ -29,7 +29,9 @@
   height: 65px;
 }
 
-
+.explore:hover{
+  transform: scale(1.1);
+}
 
 .explore{
   font-size: 2em;

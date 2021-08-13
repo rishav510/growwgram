@@ -1,3 +1,4 @@
+import getPostData from '../../utils/functions/getPostData';
 import Action from '../../utils/types/Action';
 import { ResponseDataElement } from '../../utils/types/ApiResponseObject';
 import PostData from '../../utils/types/PostData';
@@ -10,40 +11,6 @@ const postDataList = (posts : Array<PostData> = [], action: Action) => {
       return [...posts, ...newPosts];
     default: return posts;
   }
-}
-
-const getPostData = (responseDataElement: ResponseDataElement) => {
-  const {
-    id, 
-    alt_description, 
-    created_at, 
-    description, 
-    location:{title}, 
-    urls:{raw}, 
-    user: {
-      username, 
-      profile_image:{medium}
-    }, 
-    likes, 
-    liked_by_user, 
-    views,
-
-  } = responseDataElement;
-
-  return {
-    id, 
-    alt_description, 
-    created_at, 
-    caption: description, 
-    location: title, 
-    imageURL: raw, 
-    apiUsername: username,
-    username, 
-    profilePic: medium, 
-    views, 
-    likes, 
-    likedByUser: liked_by_user
-  };
 }
 
 export default postDataList;
