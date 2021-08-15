@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import Header from './components/common/Header/Header';
+import Popup from './components/common/Popup/Popup';
 import NewsFeed from './components/pages/NewsFeed/NewsFeed';
 import UserPage from './components/pages/UserPage/UserPage';
 import fetchResponseObject from './store/actionCreators/fetchResponseObject';
@@ -32,6 +33,7 @@ class App extends React.Component <Props,State>{
        
         <BrowserRouter>
             <Header/>
+            <Popup/>
             <div className = "newsfeed-wrapper">
               <Route path = "/" exact component = {NewsFeed}/>
             </div>

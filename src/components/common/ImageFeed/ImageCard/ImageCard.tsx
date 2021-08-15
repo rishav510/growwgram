@@ -8,6 +8,7 @@ import { DateTime } from 'luxon';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import displayPopup from '../../../../store/actionCreators/displayPopup';
 import fetchUserDetails
   from '../../../../store/actionCreators/fetchUserDetails';
 import fetchUserPhotos from '../../../../store/actionCreators/fetchUserPhotos';
@@ -18,28 +19,28 @@ class ImageCard extends React.PureComponent <Props, State> {
   constructor(props: Props){
     super(props);
     this.state = {
-      ready: false,
+      hasImageLoaded: false,
+      liked: false,
     }
   }
+
   render(){
     return (
       <div className="card-container">
         {this.renderPostHeader()}
-        <div className="image-container">
-          {this.renderImageContainer()}
-        </div>
+        {this.renderImageContainer()}
         {this.renderPostFooter()}
       </div>
     );
   }
+
   renderPostHeader = () => {
     return (
       <div className="post-header">
         <div className="user-header-flex">
           <Link to = "/user">
-            <img src={this.props.data?.profilePic} className="user-profile-pic" alt={this.props.data?.alt_description} onClick = {() => {
-              this.props.fetchUserPhotos(this.props.data?.username,1);
-              this.props.fetchUserDetails(this.props.data?.username)}}/>
+            <img src={this.props.data?.profilePic} className="user-profile-pic" alt={this.props.data?.alt_description} 
+            onClick = {() => {this.props.fetchUserDetails(this.props.data?.username)}}/>
           </Link>
           <div className = "user-header-text">
             <Link to = "/user">
@@ -51,10 +52,11 @@ class ImageCard extends React.PureComponent <Props, State> {
       </div>
     );
   }
+
   renderImageContainer = () => {
     return (
       <div className="image-container">
-        <div className={`image-loader-container ${this.state.ready? 'transparent' : 'opaque' }`} >
+        <div className={`image-loader-container ${this.state.hasImageLoaded? 'transparent' : 'opaque' }`} >
           <img  src="./loading-icon.svg" alt=""/>
         </div>
         <img onLoad = {() => this.handleLoad()} className="image"  src={this.props.data?.imageURL} alt={this.props.data?.alt_description} />
@@ -63,18 +65,29 @@ class ImageCard extends React.PureComponent <Props, State> {
   }
 
   handleLoad = () => {
-    this.setState({ready: true});
+    this.setState({hasImageLoaded: true});
     console.log('handleLoad ran ... ');
   }
+
   renderPostFooter = () => {
+
     return (
       <div className="post-footer">
           <section className="button-tray">
-            <span className="material-icons-outlined material-icons heart">favorite_border</span>
-            <span className="material-icons-outlined material-icons comment">chat_bubble_outline</span>
-            <span className="material-icons-outlined material-icons share">send</span>
+            <span className={`
+            material-icons-outlined material-icons heart
+            ${this.state.liked?'red':''}
+            `} 
+            onClick = {this.handleLike}>
+            {this.state.liked?"favorite":"favorite_border"}
+            </span>
+            <span className="material-icons-outlined material-icons comment"
+            onClick = {() => this.props.displayPopup()}>chat_bubble_outline</span>
+            <span className="material-icons-outlined material-icons share"
+            onClick = {() => this.props.displayPopup()}>send</span>
             <div className="bookmark-container">
-              <span className="material-icons-outlined material-icons bookmark">turned_in</span>
+              <span className="material-icons-outlined material-icons bookmark"
+              onClick = {() => this.props.displayPopup()}>turned_in</span>
             </div>
           </section>
           <section className="likes">
@@ -85,6 +98,7 @@ class ImageCard extends React.PureComponent <Props, State> {
         </div>
     );
   }
+
   renderCaption = () => {
     return (this.props.data.caption)?
       (
@@ -99,24 +113,29 @@ class ImageCard extends React.PureComponent <Props, State> {
       ):
       null;
   }
+
   renderDate = (date: string) => {
     const dt = DateTime.fromISO(date);
     return dt.toLocaleString(DateTime.DATE_FULL);
   }
+
+  handleLike = () => {
+    this.setState({liked:true});
+    setTimeout(()=>{this.setState({liked:false})},600);
+  }
 }
 
-
-
 type State = {
-  ready: boolean,
+  hasImageLoaded: boolean,
+  liked: boolean,
 }
 
 type Props = {
   data: PostData,
   fetchUserDetails: Function,
   fetchUserPhotos: Function,
+  displayPopup: Function,
+  isProfilePicClickable: boolean,
 }
 
-
-
-export default connect (null, {fetchUserDetails, fetchUserPhotos})(ImageCard);
+export default connect (null, {displayPopup, fetchUserDetails, fetchUserPhotos})(ImageCard);

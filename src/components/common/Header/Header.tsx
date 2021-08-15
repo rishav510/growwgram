@@ -2,18 +2,33 @@ import './header.css';
 
 import React from 'react';
 
-const Header = () => {
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import deleteCurrentUser from '../../../store/actionCreators/deleteUserDetails';
+
+const Header = (props: Props) => {
   return (
     <div className = "main-header-wrapper">
       <div className="main-header">
         <div className="growwgram">
-          GrowwGram
+          <Link to="/">
+           <span onClick = {()=>{props.deleteCurrentUser()}}>GrowwGram</span>
+          </Link>
         </div>
         <div>
-          <span className="material-icons material-icons-outlined explore">explore</span>
+          <Link to="/">
+            <span className="material-icons material-icons-outlined explore"
+            onClick = {()=>{props.deleteCurrentUser()}}
+            >explore</span>
+          </Link>
         </div>
       </div>
     </div>
   );
 }
-export default Header;
+
+type Props = {
+  deleteCurrentUser: Function,
+}
+export default connect (null, {deleteCurrentUser})(Header);

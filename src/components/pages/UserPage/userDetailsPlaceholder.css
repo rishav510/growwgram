@@ -1,0 +1,63 @@
+.placeholder-user-page-profile-pic{
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background: gray;
+  margin: auto;
+}
+
+.placeholder-user-page-username{
+  width: 150px;
+  height: 37px;
+  background-color: gray;
+}
+
+.placeholder-follow-button{
+  width: 100%;
+  padding: 0 12px;
+  background-color: gray;
+  font-family: Arial, Helvetica, sans-serif;
+  color: gray;
+  border-radius: 5px;
+  margin: 0 10px 0 0;
+}
+
+.placeholder-expand-button{
+  min-width: 37px;
+
+  background: gray;
+  border-radius: 5px;
+}
+
+.placeholder-user-page-stat-data{
+  width: 100px;
+  background-color: gray;
+  margin-right: 20px;
+  height: 20px;
+}
+
+.placeholder-user-page-fullname{
+  width: 150px;
+  height: 20px;
+  background: gray;
+}
+
+@media only screen and (max-width: 800px){
+  .placeholder-user-page-profile-pic{
+    left: 16px;
+    height: 75px;
+    width: 75px;
+  }
+  .placeholder-user-page-stat-data{
+    display: none;
+  }
+  .placeholder-user-page-username{
+    align-self: center;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .placeholder-follow-button, .placeholder-follow-button{
+    width: 20%;
+    height: 28px;
+  }
+}

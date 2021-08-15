@@ -7,6 +7,10 @@ type ReduxState = {
   nextUserPhotosPage: number,
   pageLoaded: boolean,
   postDataList: Array<PostData>,
+  userDetailsLoading: boolean,
+  userPhotosLoading: boolean,
+  popupDisplayed: boolean,
+  isRequestFailed: boolean,
 }
 
 export default ReduxState;
