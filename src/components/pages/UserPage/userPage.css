@@ -6,6 +6,7 @@
   justify-content: space-between;
 }
 
+
 .user-page-profile-pic-container{
   margin: 0 30px 0 0 ;
   flex-grow: 1;
@@ -78,6 +79,7 @@
 .user-page-profile-pic{
   width: 150px;
   height: 150px;
+  border: 1px solid var(--color-border-light);
   border-radius: 50%;
   display: block;
   margin: auto;
@@ -126,6 +128,10 @@
 .user-feed-list{
   display:flex;
   justify-content: center;
+}
+
+.hidden{
+  display: none;
 }
 @media only screen and (max-width:800px){
   .user-page-photo-gallery{

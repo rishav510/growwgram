@@ -17,9 +17,11 @@ const Popup = (props: Props) => {
     onClick = {() => props.removePopup()}
     >
       <div className="popup-container">
+
         <h2>{heading}</h2>
         <hr/>
-        <br/>
+
+          <img src = "../../../resources/calendar.png" alt=""/>
 
         <p>{message}</p>
       </div>

@@ -10,6 +10,7 @@ import fetchUserPhotos from '../../../store/actionCreators/fetchUserPhotos';
 import PostData from '../../../utils/types/PostData';
 import ReduxState from '../../../utils/types/ReduxState';
 import UserData from '../../../utils/types/UserData';
+import ErrorDialog from '../../common/ErrorDialog/ErrorDialog';
 import ImageFeed from '../../common/ImageFeed/ImageFeed';
 import GridView from './GridView/GridView';
 
@@ -20,12 +21,25 @@ const UserPage = (props: Props) => {
   const {userPhotos} = props;
 
   return (
+    <>
+    <div className={`user-page-wrapper
+      ${props.isRequestFailed? 'hidden' : ''}
+    `}
 
-    <div className="user-page-wrapper">
-      {props.pageLoading ?
+    >
+      {(props.isRequestFailed)?
+          null:
+        (props.pageLoading ?
         renderPlaceholder() : renderUserDetails(userData)
+        )
       }
-      <div className="user-page-posts-header">
+
+      <div className=
+        {`
+          user-page-posts-header
+          
+        `}
+      >
         <span className={`
           grid-button 
           posts-display-option 
@@ -45,23 +59,42 @@ const UserPage = (props: Props) => {
           {() => { setGridViewSelected(false) }}>crop_portrait</span>
       </div>
       <div className="user-page-photo-gallery">
-        {
-          gridViewSelected ?
-            <GridView data={userPhotos} /> :
-            <div className="user-feed-list">
-              <InfiniteScroll
-                loadMore={() => {
-                  if(!props.photosLoading && !props.pageLoading)
-                    props.fetchUserPhotos(userData?.username, props.nextPage)
-                }}
-                useWindow={true}
-                hasMore={true}>
-                {<ImageFeed data={userPhotos} />}
-              </InfiniteScroll>
+      {
+        gridViewSelected ?
+        <GridView data={userPhotos} /> :
+        <div className="user-feed-list">
+        <InfiniteScroll
+        
+          loadMore={() => {
+            if (!props.photosLoading && !props.pageLoading)
+            {
+              console.log("loadmore ran ...");
+              props.fetchUserPhotos(userData?.username, props.nextPage)
+            }
+
+          }}
+          useWindow={true}
+          loader = {
+            <div className = "loader" key ={0}>
+              Loading ...
             </div>
-        }
+          }
+          hasMore = {!props.isRequestFailed}>
+
+              
+              <ImageFeed isProfilePicClickable = {false} data={userPhotos} />
+              
+          
+        </InfiniteScroll>
+        </div>
+}
       </div>
+      
     </div>
+      {props.isRequestFailed? <ErrorDialog/>: null}
+
+    </>
+    
   )
 }
 
@@ -154,6 +187,7 @@ const mapStateToProps = (state: ReduxState) => {
     nextPage: state.nextUserPhotosPage,
     pageLoading: state.userDetailsLoading,
     photosLoading: state.userPhotosLoading,
+    isRequestFailed: state.isRequestFailed,
   }
 }
 
@@ -164,6 +198,7 @@ type Props = {
   pageLoading: boolean,
   photosLoading: boolean,
   nextPage: number,
+  isRequestFailed: boolean,
 };
 
 export default connect(mapStateToProps, { fetchUserPhotos })(UserPage);

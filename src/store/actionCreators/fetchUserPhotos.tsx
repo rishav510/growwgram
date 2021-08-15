@@ -9,15 +9,21 @@ const fetchUserPhotos = (username: string, page: number) => {
       });
       console.log('fetch user photos')
       const photos = await unsplash.get(`/users/${username}/photos`,{params: {username, orderby: 'latest', page, stats: true}})
+      setTimeout(() => {console.log("timeout")}, 1000);
       dispatch({
         type: 'FETCH_USER_PHOTOS',
         payload: photos,
       })
       console.log('done loading photographs');
     }
-    catch(err)
+    catch(error)
     {
-      console.log(err);
+      dispatch({
+        type: 'SET_API_REQUEST_ERROR',
+        payload: {
+          status: error.response.status,
+        }
+      });
     }
     finally{
       dispatch({

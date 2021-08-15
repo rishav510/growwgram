@@ -19,7 +19,7 @@ class ImageCard extends React.PureComponent <Props, State> {
   constructor(props: Props){
     super(props);
     this.state = {
-      ready: false,
+      hasImageLoaded: false,
       liked: false,
     }
   }
@@ -28,9 +28,7 @@ class ImageCard extends React.PureComponent <Props, State> {
     return (
       <div className="card-container">
         {this.renderPostHeader()}
-        <div className="image-container">
-          {this.renderImageContainer()}
-        </div>
+        {this.renderImageContainer()}
         {this.renderPostFooter()}
       </div>
     );
@@ -58,7 +56,7 @@ class ImageCard extends React.PureComponent <Props, State> {
   renderImageContainer = () => {
     return (
       <div className="image-container">
-        <div className={`image-loader-container ${this.state.ready? 'transparent' : 'opaque' }`} >
+        <div className={`image-loader-container ${this.state.hasImageLoaded? 'transparent' : 'opaque' }`} >
           <img  src="./loading-icon.svg" alt=""/>
         </div>
         <img onLoad = {() => this.handleLoad()} className="image"  src={this.props.data?.imageURL} alt={this.props.data?.alt_description} />
@@ -67,7 +65,7 @@ class ImageCard extends React.PureComponent <Props, State> {
   }
 
   handleLoad = () => {
-    this.setState({ready: true});
+    this.setState({hasImageLoaded: true});
     console.log('handleLoad ran ... ');
   }
 
@@ -128,7 +126,7 @@ class ImageCard extends React.PureComponent <Props, State> {
 }
 
 type State = {
-  ready: boolean,
+  hasImageLoaded: boolean,
   liked: boolean,
 }
 
@@ -137,6 +135,7 @@ type Props = {
   fetchUserDetails: Function,
   fetchUserPhotos: Function,
   displayPopup: Function,
+  isProfilePicClickable: boolean,
 }
 
 export default connect (null, {displayPopup, fetchUserDetails, fetchUserPhotos})(ImageCard);

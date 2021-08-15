@@ -10,6 +10,9 @@ const currentUserPhotos = (userPhotos: Array<PostData> = [], action: Action) => 
     const newUserPhotos = action.payload.data.map((responseData: ResponseDataElement) => getPostData(responseData));
     return [...userPhotos, ...newUserPhotos];
 
+    case 'FETCH_USER_DETAILS':
+    return [];
+    
     case 'DELETE_CURRENT_USER':
     return [];
 

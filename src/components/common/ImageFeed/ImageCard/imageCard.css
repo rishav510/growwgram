@@ -4,6 +4,7 @@
   height: 48px;
   width: 48px;
   border-radius: 50%;
+  border: 1px solid var(--color-border-light);
   overflow: hidden;
 }
 
@@ -74,7 +75,7 @@ a:hover{
 }
 
 .image-loader-container{
-  width: 600px;
+  width: 100%;
   min-height: 200px;
   height: 100%;
   position: absolute;
@@ -102,11 +103,11 @@ a:hover{
 
 .heart, .share, .comment, .bookmark{
   font-size: 32px;
-  margin: 4px 16px 0 0 ;
+  margin: 4px 16px 0 0;
   cursor: pointer;
 }
 
-.share:hover, .comment:hover, .bookmark:hover{
+.share:hover, .comment:hover, .bookmark:hover, .share:active, .comment:active, .bookmark:active, .heart:active{
   transform: scale(1.1);
 }
 

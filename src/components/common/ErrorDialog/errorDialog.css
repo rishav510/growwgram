@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
+
+.error-dialog-container{
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+}
+
+.error-dialog-container > h2{
+  font-size: 3em;
+}
+
+.error-dialog-container > p{
+  font-size: 2em;
+}
+
+@media only screen and (max-width: 800px){
+  .error-dialog-container{
+    display: block;
+  }
+}

@@ -12,7 +12,9 @@ const Header = (props: Props) => {
     <div className = "main-header-wrapper">
       <div className="main-header">
         <div className="growwgram">
-          GrowwGram
+          <Link to="/">
+           <span onClick = {()=>{props.deleteCurrentUser()}}>GrowwGram</span>
+          </Link>
         </div>
         <div>
           <Link to="/">

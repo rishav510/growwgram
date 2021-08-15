@@ -10,6 +10,7 @@ type ReduxState = {
   userDetailsLoading: boolean,
   userPhotosLoading: boolean,
   popupDisplayed: boolean,
+  isRequestFailed: boolean,
 }
 
 export default ReduxState;
