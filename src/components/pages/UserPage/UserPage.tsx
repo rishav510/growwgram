@@ -6,40 +6,38 @@ import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
 
+import displayPopup from '../../../store/actionCreators/displayPopup';
 import fetchUserPhotos from '../../../store/actionCreators/fetchUserPhotos';
 import PostData from '../../../utils/types/PostData';
 import ReduxState from '../../../utils/types/ReduxState';
 import UserData from '../../../utils/types/UserData';
 import ErrorDialog from '../../common/ErrorDialog/ErrorDialog';
 import ImageFeed from '../../common/ImageFeed/ImageFeed';
+import StubButton from '../../common/StubButton/StubButton';
 import GridView from './GridView/GridView';
 
 const UserPage = (props: Props) => {
 
   const [gridViewSelected, setGridViewSelected] = useState(false);
-  const { userData } = props; 
+  const {userData} = props; 
   const {userPhotos} = props;
+
+  const setListView = () => {
+    setGridViewSelected(false);
+  }
 
   return (
     <>
-    <div className={`user-page-wrapper
-      ${props.isRequestFailed? 'hidden' : ''}
-    `}
-
-    >
-      {(props.isRequestFailed)?
+    <div className={`user-page-wrapper ${props.isRequestFailed? 'hidden' : ''}`}>
+      {
+      (props.isRequestFailed)?
           null:
-        (props.pageLoading ?
-        renderPlaceholder() : renderUserDetails(userData)
-        )
+        props.pageLoading ?
+        userDetailsPlaceholder() : renderUserDetails(userData)
       }
 
-      <div className=
-        {`
-          user-page-posts-header
-          
-        `}
-      >
+      <div className={`user-page-posts-header`}>
+
         <span className={`
           grid-button 
           posts-display-option 
@@ -48,57 +46,56 @@ const UserPage = (props: Props) => {
           ${gridViewSelected ? 'selected' : ''}
           `}
           onClick={() => { setGridViewSelected(true) }}>grid_on</span>
+
         <span className={`
           list-button 
           posts-display-option 
           material-icons 
           material-icons-outlined
-          ${gridViewSelected ? '' : 'selected'}
+          ${gridViewSelected? '' : 'selected'}
           `}
-          onClick = 
-          {() => { setGridViewSelected(false) }}>crop_portrait</span>
+          onClick = {() => { setGridViewSelected(false)}}>crop_portrait</span>
+
       </div>
+
       <div className="user-page-photo-gallery">
       {
         gridViewSelected ?
-        <GridView data={userPhotos} /> :
-        <div className="user-feed-list">
-        <InfiniteScroll
-        
-          loadMore={() => {
-            if (!props.photosLoading && !props.pageLoading)
-            {
-              console.log("loadmore ran ...");
-              props.fetchUserPhotos(userData?.username, props.nextPage)
-            }
+        <GridView onClick = {setListView} data={userPhotos} /> :
+              <div className="user-feed-list">
+                <InfiniteScroll
 
-          }}
-          useWindow={true}
-          loader = {
-            <div className = "loader" key ={0}>
-              Loading ...
-            </div>
+                  loadMore={() => {
+                    if (!props.photosLoading && !props.pageLoading) {
+                      props.fetchUserPhotos(userData?.username, props.nextPage)
+                    }
+                  }}
+
+                  useWindow={true}
+
+                  loader={
+                    <div key={0} className="loader">
+                      <div className="loader-image-container">
+                      </div>
+                    </div>
+                  }
+
+                  hasMore={!props.isRequestFailed}>
+
+                  <ImageFeed isProfilePicClickable={false} feedData={userPhotos} />
+
+                </InfiniteScroll>
+              </div>
           }
-          hasMore = {!props.isRequestFailed}>
-
-              
-              <ImageFeed isProfilePicClickable = {false} data={userPhotos} />
-              
-          
-        </InfiniteScroll>
-        </div>
-}
-      </div>
-      
+      </div>    
     </div>
       {props.isRequestFailed? <ErrorDialog/>: null}
-
     </>
-    
   )
+
 }
 
-const renderPlaceholder = () => {
+const userDetailsPlaceholder = () => {
   return (
     <div className="user-page-header-flex">
       <div className="user-page-profile-pic-container">
@@ -147,23 +144,26 @@ const renderUserDetails = (userData: UserData) => {
 
   return (
     <div className="user-page-header-flex">
+
       <div className="user-page-profile-pic-container">
         <img className="user-page-profile-pic" src={profilePic} alt="" />
       </div>
+
       <div className="user-page-details">
+
         <div className="user-page-details-top">
+
           <section className="user-page-username">
             <span>{username}</span>
           </section>
-          <div className="user-page-button-tray">
-            <button className="follow-button">Follow</button>
-            <button className="suggested-bar-button">
-              <span className="material-icons material-icons-outlined">expand_more</span>
-            </button>
+
+          <div className="user-page-button-tray">           
+            <StubButton name = "Follow" isButton = {true} isIcon = {false} additionalCSS = "follow-button" />
+            <StubButton isButton = {true} name = "expand_more" isIcon = {true} additionalCSS = "suggested-bar-button"/>
           </div>
-          <button className="ellipsis-button">
-            <span className="material-icons material-icons-outlined">more_horiz</span>
-          </button>
+
+          <StubButton isButton = {true} name = "more_horiz" isIcon = {true} additionalCSS = "ellipsis-button"/>
+
         </div>
 
         <div className="user-page-details-middle">
@@ -175,6 +175,7 @@ const renderUserDetails = (userData: UserData) => {
           <div className="user-page-fullname bold">{firstName} {lastName}</div>
           <div className="user-page-bio">{bio}</div>
         </div>
+
       </div>
     </div>
   )
@@ -199,7 +200,8 @@ type Props = {
   photosLoading: boolean,
   nextPage: number,
   isRequestFailed: boolean,
+  displayPopup: Function,
 };
 
-export default connect(mapStateToProps, { fetchUserPhotos })(UserPage);
+export default connect(mapStateToProps, { fetchUserPhotos, displayPopup })(UserPage);
 

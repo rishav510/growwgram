@@ -12,7 +12,9 @@ import displayPopup from '../../../../store/actionCreators/displayPopup';
 import fetchUserDetails
   from '../../../../store/actionCreators/fetchUserDetails';
 import fetchUserPhotos from '../../../../store/actionCreators/fetchUserPhotos';
+import Action from '../../../../utils/types/Action';
 import PostData from '../../../../utils/types/PostData';
+import StubButton from '../../StubButton/StubButton';
 
 class ImageCard extends React.PureComponent <Props, State> {
 
@@ -35,18 +37,20 @@ class ImageCard extends React.PureComponent <Props, State> {
   }
 
   renderPostHeader = () => {
+    const {postData} = this.props;
     return (
       <div className="post-header">
         <div className="user-header-flex">
           <Link to = "/user">
-            <img src={this.props.data?.profilePic} className="user-profile-pic" alt={this.props.data?.alt_description} 
-            onClick = {() => {this.props.fetchUserDetails(this.props.data?.username)}}/>
+            <img src={postData?.profilePic} className="user-profile-pic" alt={postData?.alt_description} 
+            onClick = {this.handleUserInfoClick}/>
           </Link>
           <div className = "user-header-text">
             <Link to = "/user">
-              <span className="username row">{this.props.data?.username}</span>
+              <span className="username row"
+              onClick ={this.handleUserInfoClick} >{postData?.username}</span>
             </Link>
-            <span className="location row">{this.props.data?.location}</span>
+            <span className="location row">{postData?.location}</span>
           </div>
         </div>
       </div>
@@ -54,60 +58,66 @@ class ImageCard extends React.PureComponent <Props, State> {
   }
 
   renderImageContainer = () => {
+    const {postData} = this.props;
     return (
       <div className="image-container">
         <div className={`image-loader-container ${this.state.hasImageLoaded? 'transparent' : 'opaque' }`} >
           <img  src="./loading-icon.svg" alt=""/>
         </div>
-        <img onLoad = {() => this.handleLoad()} className="image"  src={this.props.data?.imageURL} alt={this.props.data?.alt_description} />
+        <img onLoad = {() => this.handleLoad()} className="image"  src={postData?.imageURL} alt={postData?.alt_description} />
       </div>
     );
   }
 
   handleLoad = () => {
     this.setState({hasImageLoaded: true});
-    console.log('handleLoad ran ... ');
   }
 
   renderPostFooter = () => {
-
+    const {postData} = this.props;
     return (
       <div className="post-footer">
           <section className="button-tray">
-            <span className={`
-            material-icons-outlined material-icons heart
-            ${this.state.liked?'red':''}
+
+            <span 
+            className={`
+              material-icons-outlined material-icons heart
+              ${this.state.liked?'red':''}
             `} 
             onClick = {this.handleLike}>
-            {this.state.liked?"favorite":"favorite_border"}
+              {this.state.liked?"favorite":"favorite_border"}
             </span>
-            <span className="material-icons-outlined material-icons comment"
-            onClick = {() => this.props.displayPopup()}>chat_bubble_outline</span>
-            <span className="material-icons-outlined material-icons share"
-            onClick = {() => this.props.displayPopup()}>send</span>
+
+            <StubButton isIcon = {true} name = "chat_bubble_outline" additionalCSS = "comment"/>
+
+            <StubButton isIcon = {true} name = "send" additionalCSS = "share"/>
+
             <div className="bookmark-container">
-              <span className="material-icons-outlined material-icons bookmark"
-              onClick = {() => this.props.displayPopup()}>turned_in</span>
+              <StubButton isIcon = {true} name = "turned_in" additionalCSS = "bookmark"/>
             </div>
+
           </section>
+
           <section className="likes">
-            <span className="number-of-likes">{this.props.data?.likes}</span>likes
+            <span className="number-of-likes">{postData?.likes}</span>likes
           </section>
+          
           {this.renderCaption()}
-          <div className = "date">{this.renderDate(this.props.data?.created_at)}</div>
+          <div className = "date">{this.renderDate(postData?.created_at)}</div>
         </div>
     );
   }
 
   renderCaption = () => {
-    return (this.props.data.caption)?
+    const {postData} = this.props;
+    return (postData.caption)?
       (
         <section className="caption-container">
             <span className="caption">
               <span className="bold space-right">
-                {this.props.data?.username}
+                {postData?.username}
               </span>
-              {this.props.data?.caption}
+              {postData?.caption}
             </span>
           </section>
       ):
@@ -123,6 +133,15 @@ class ImageCard extends React.PureComponent <Props, State> {
     this.setState({liked:true});
     setTimeout(()=>{this.setState({liked:false})},600);
   }
+
+  handleUserInfoClick = () => {
+    const {postData} = this.props;
+    this.props.fetchUserDetails(postData?.username);
+  }
+
+  handleStubButton = () => {
+    this.props.displayPopup();
+  }
 }
 
 type State = {
@@ -131,10 +150,10 @@ type State = {
 }
 
 type Props = {
-  data: PostData,
-  fetchUserDetails: Function,
-  fetchUserPhotos: Function,
-  displayPopup: Function,
+  postData: PostData,
+  fetchUserDetails: (username: string) => Action | Promise<void>,
+  fetchUserPhotos: (username: string, nextPage: number) => Action | Promise<void>
+  displayPopup: () => Action,
   isProfilePicClickable: boolean,
 }
 

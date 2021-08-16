@@ -19,10 +19,7 @@ const Popup = (props: Props) => {
       <div className="popup-container">
 
         <h2>{heading}</h2>
-        <hr/>
-
-          <img src = "../../../resources/calendar.png" alt=""/>
-
+        <div className="popup-image-container"></div>
         <p>{message}</p>
       </div>
     </div>

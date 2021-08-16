@@ -12,11 +12,15 @@ const fetchUserDetails = (username: string) => {
         type: 'FETCH_USER_DETAILS',
         payload: response,
       });
-      console.log('fetched user details');
     }
-    catch(err)
+    catch(error)
     {
-      console.log("errorrrrr:",err);
+      dispatch({
+        type: 'SET_API_REQUEST_ERROR',
+        payload: {
+          status: error.response.status,
+        }
+      });
     }
     
     finally{

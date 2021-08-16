@@ -14,13 +14,9 @@ const fetchResponseObject = () => {
       dispatch({
         type: 'SET_API_REQUEST_ERROR',
         payload: {
-          status: error.response.status,
+          status: error.response?.status,
         }
       })
-      console.log(error.response.status);
-    }
-    finally{
-      console.log("finally");
     }
     
   }

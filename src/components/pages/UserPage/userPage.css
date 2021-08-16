@@ -6,7 +6,6 @@
   justify-content: space-between;
 }
 
-
 .user-page-profile-pic-container{
   margin: 0 30px 0 0 ;
   flex-grow: 1;
@@ -27,17 +26,28 @@
   margin: 0 0 20px;
 }
 
-.follow-button,.suggested-bar-button,.ellipsis-button{
+.follow-button{
   font-size: 1em;
-  margin-right: 10px
+  margin-right: 10px;
 }
 
+.ellipsis-button{
+  margin-right: 10px;
+}
 .follow-button{
   padding: 0 20px;
-  background-color: rgb(0, 207, 128);
+  background-color: var(--color-medium-spring-green);
   border: none;
   color: white;
   border-radius: 5px;
+}
+
+.follow-button:hover, .ellipsis-button:hover, .suggested-bar-button:hover{
+  transform: scale(1.1);
+}
+
+.ellipsis-button:hover{
+  color: var(--color-medium-spring-green);
 }
 
 .suggested-bar-button{

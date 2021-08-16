@@ -7,14 +7,13 @@ const fetchUserPhotos = (username: string, page: number) => {
       dispatch({
         type: 'SET_USER_PHOTOS_LOADING',
       });
-      console.log('fetch user photos')
       const photos = await unsplash.get(`/users/${username}/photos`,{params: {username, orderby: 'latest', page, stats: true}})
-      setTimeout(() => {console.log("timeout")}, 1000);
+      if(photos === undefined)
+        console.log("empty response");
       dispatch({
         type: 'FETCH_USER_PHOTOS',
         payload: photos,
       })
-      console.log('done loading photographs');
     }
     catch(error)
     {
@@ -29,7 +28,6 @@ const fetchUserPhotos = (username: string, page: number) => {
       dispatch({
         type: 'SET_USER_PHOTOS_LOADED',
       });
-      console.log("fetching done ...");
     }
   }
 }

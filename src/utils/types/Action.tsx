@@ -1,6 +1,6 @@
 type Action = {
   type: string,
-  payload: Payload,
+  payload?: Payload,
 }
 
 type Payload = any;

@@ -1,3 +1,5 @@
+import './newsFeed.css';
+
 import React from 'react';
 
 import InfiniteScroll from 'react-infinite-scroller';
@@ -17,33 +19,34 @@ class NewsFeed extends React.Component <Props>{
   componentDidMount = () => {
     deleteCurrentUser();
   }
+  
   render(){
-    
     return (
       <div>  
+
           <InfiniteScroll 
             loader={
               <div key = {0} className ="loader">
-                Loading ...
-                <img src = "../../../resources/loading-bar.svg" alt =""/>
+                <div className ="loader-image-container">
+                </div>
               </div>
             }
             loadMore = {() => this.props.fetchResponseObject()}
             useWindow = {true}
             hasMore = {!this.props.isRequestFailed}>
-            {<ImageFeed isProfilePicClickable = {true} data = {this.props.postDataList}/>}
+            {<ImageFeed isProfilePicClickable = {true} feedData = {this.props.postDataList}/>}
             
           </InfiniteScroll>
           {this.props.isRequestFailed?<ErrorDialog/>:null}
+
       </div>
     );
   }
-
 }
 
 const mapStateToProps = (state: ReduxState) => {
   return {
-    postDataList: state.postDataList,
+    postDataList: state.feedData,
     isRequestFailed: state.isRequestFailed,
   }
 }

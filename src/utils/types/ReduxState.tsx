@@ -6,7 +6,7 @@ type ReduxState = {
   currentUserPosts: Array<PostData>,
   nextUserPhotosPage: number,
   pageLoaded: boolean,
-  postDataList: Array<PostData>,
+  feedData: Array<PostData>,
   userDetailsLoading: boolean,
   userPhotosLoading: boolean,
   popupDisplayed: boolean,

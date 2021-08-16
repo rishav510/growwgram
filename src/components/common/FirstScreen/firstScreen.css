@@ -1,0 +1,18 @@
+.welcome-content{
+  margin: auto;
+  font-size: 3em;
+  font-family: 'Style Script', cursive;
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.whole-page-wrapper-solid{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 3;
+  transition-duration: 2.5s;
+}

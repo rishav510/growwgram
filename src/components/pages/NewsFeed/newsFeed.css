@@ -2,3 +2,14 @@
   font-size: xx-large;
   text-align: center;
 }
+
+.loader-image-container{
+  margin-top: 20px;
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  background-image: url('../../../resources/spinner-loader.svg');
+  background-position: center;
+  background-size: contain;
+
+}

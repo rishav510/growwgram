@@ -6,6 +6,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+import FirstScreen from './components/common/FirstScreen/FirstScreen';
 import Header from './components/common/Header/Header';
 import Popup from './components/common/Popup/Popup';
 import NewsFeed from './components/pages/NewsFeed/NewsFeed';
@@ -17,13 +18,13 @@ class App extends React.Component <Props,State>{
   constructor(props:Props){
     super(props);
     this.state = {
-      imageObject: null,
-      imageDataArray: [],
+      firstScreen: true,
     }
   }
 
-  componentDidUpdate = () => {
-    console.log('App component updated ...');
+  componentDidMount = () => {
+    console.log('app mounted');
+    setTimeout(() => {this.setState({firstScreen: false})}, 2000)
   }
 
   render(){
@@ -32,6 +33,7 @@ class App extends React.Component <Props,State>{
       <div>
        
         <BrowserRouter>
+            {this.state.firstScreen? <FirstScreen/>: null}
             <Header/>
             <Popup/>
             <div className = "newsfeed-wrapper">
@@ -47,12 +49,11 @@ class App extends React.Component <Props,State>{
 
 type Props = any;
 type State = {
-  imageObject?: any,
-  imageDataArray?: any,
+  firstScreen: boolean;
 };
 
 const mapStateToProps = (state:any) => {
-  console.log(state);
+
   return {
     postDataList: state.postDataList,
   }
