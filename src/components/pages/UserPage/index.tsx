@@ -1,8 +1,4 @@
-import './userPage.css';
-import './userDetailsPlaceholder.css';
-
 import { useState } from 'react';
-
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
 
@@ -11,10 +7,17 @@ import fetchUserPhotos from '../../../store/actionCreators/fetchUserPhotos';
 import PostData from '../../../utils/types/PostData';
 import ReduxState from '../../../utils/types/ReduxState';
 import UserData from '../../../utils/types/UserData';
-import ErrorDialog from '../../common/ErrorDialog/ErrorDialog';
-import ImageFeed from '../../common/ImageFeed/ImageFeed';
-import StubButton from '../../common/StubButton/StubButton';
-import GridView from './GridView/GridView';
+import { MemoizedErrorDialog as ErrorDialog } from '../../common/ErrorDialog';
+import ImageFeed from '../../common/ImageFeed';
+import StubButton from '../../common/StubButton';
+
+import GridView from './GridView';
+import {
+  MemoizedUserDetailsPlaceholder as UserDetailsPlaceholder
+} from './UserDetailsPlaceholder';
+
+import './userPage.css';
+
 
 const UserPage = (props: Props) => {
 
@@ -33,7 +36,7 @@ const UserPage = (props: Props) => {
       (props.isRequestFailed)?
           null:
         props.pageLoading ?
-        userDetailsPlaceholder() : renderUserDetails(userData)
+        renderUserDetailsPlaceholder() : renderUserDetails(userData)
       }
 
       <div className={`user-page-posts-header`}>
@@ -95,41 +98,8 @@ const UserPage = (props: Props) => {
 
 }
 
-const userDetailsPlaceholder = () => {
-  return (
-    <div className="user-page-header-flex">
-      <div className="user-page-profile-pic-container">
-        <div className="placeholder-user-page-profile-pic"></div>
-      </div>
-
-      <div className="user-page-details">
-        <div className="user-page-details-top">
-          <div className="placeholder-user-page-username">
-            <div className="placeholder-user-page-username"></div>
-          </div>
-
-          <div className="user-page-button-tray">
-            <div className="placeholder-follow-button">Follow</div>
-            <div className="placeholder-expand-button"></div>
-
-          </div>
-          <button className="ellipsis-button">
-            <span className="material-icons material-icons-outlined">more_horiz</span>
-          </button>
-        </div>
-
-        <div className="user-page-details-middle">
-          <div className="placeholder-user-page-stat-data followers"></div>
-          <div className="placeholder-user-page-stat-data following"></div>
-        </div>
-
-        <div className="user-page-details-bottom">
-          <div className="placeholder-user-page-fullname bold"></div>
-          <div className="user-page-bio"></div>
-        </div>
-      </div>
-    </div>
-  );
+const renderUserDetailsPlaceholder = () => {
+  return <UserDetailsPlaceholder />
 }
 
 const renderUserDetails = (userData: UserData) => {
@@ -146,7 +116,7 @@ const renderUserDetails = (userData: UserData) => {
     <div className="user-page-header-flex">
 
       <div className="user-page-profile-pic-container">
-        <img className="user-page-profile-pic" src={profilePic} alt="" />
+        <img className="user-page-profile-pic" src={profilePic} alt={userData.username} />
       </div>
 
       <div className="user-page-details">

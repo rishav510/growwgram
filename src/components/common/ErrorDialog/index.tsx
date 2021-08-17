@@ -1,4 +1,7 @@
+import React from 'react';
+
 import './errorDialog.css';
+
 
 const ErrorDialog = () => {
   const heading = <>Oops!<br/>Something went wrong...</>;
@@ -12,4 +15,5 @@ const ErrorDialog = () => {
     </div>
   );
 }
-export default ErrorDialog;
+
+export const MemoizedErrorDialog = React.memo(ErrorDialog);

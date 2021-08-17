@@ -1,12 +1,8 @@
-import './imageCard.css';
-import 'react-placeholder/lib/reactPlaceholder.css';
-import '../../../../../resources/loading-icon.svg';
-
 import React from 'react';
-
-import { DateTime } from 'luxon';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { DateTime } from 'luxon';
 
 import displayPopup from '../../../../store/actionCreators/displayPopup';
 import fetchUserDetails
@@ -14,7 +10,11 @@ import fetchUserDetails
 import fetchUserPhotos from '../../../../store/actionCreators/fetchUserPhotos';
 import Action from '../../../../utils/types/Action';
 import PostData from '../../../../utils/types/PostData';
-import StubButton from '../../StubButton/StubButton';
+import StubButton from '../../StubButton';
+
+import './imageCard.css';
+import 'react-placeholder/lib/reactPlaceholder.css';
+
 
 class ImageCard extends React.PureComponent <Props, State> {
 
@@ -62,7 +62,6 @@ class ImageCard extends React.PureComponent <Props, State> {
     return (
       <div className="image-container">
         <div className={`image-loader-container ${this.state.hasImageLoaded? 'transparent' : 'opaque' }`} >
-          <img  src="./loading-icon.svg" alt=""/>
         </div>
         <img onLoad = {() => this.handleLoad()} className="image"  src={postData?.imageURL} alt={postData?.alt_description} />
       </div>

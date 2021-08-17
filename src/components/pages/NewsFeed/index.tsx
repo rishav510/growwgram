@@ -1,7 +1,4 @@
-import './newsFeed.css';
-
 import React from 'react';
-
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
 
@@ -11,8 +8,11 @@ import fetchResponseObject
 import fetchUserDetails from '../../../store/actionCreators/fetchUserDetails';
 import PostData from '../../../utils/types/PostData';
 import ReduxState from '../../../utils/types/ReduxState';
-import ErrorDialog from '../../common/ErrorDialog/ErrorDialog';
-import ImageFeed from '../../common/ImageFeed/ImageFeed';
+import { MemoizedErrorDialog as ErrorDialog } from '../../common/ErrorDialog';
+import ImageFeed from '../../common/ImageFeed';
+
+import './newsFeed.css';
+
 
 class NewsFeed extends React.Component <Props>{
 

@@ -80,7 +80,7 @@ a{
   height: 100%;
   position: absolute;
   background: rgb(233, 233, 233);
-  background-image: url("./loading-icon.svg");
+  background-image: url("./images/loading-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
   transition: 0.3s;

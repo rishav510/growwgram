@@ -2,6 +2,7 @@ import Action from '../../utils/types/Action';
 import ResponseUserData from '../../utils/types/ResponseUserData';
 import UserData from '../../utils/types/UserData';
 
+
 const currentUserDetails = (userData: UserData | null = null, action: Action) => {
   switch(action.type){
     case 'FETCH_USER_DETAILS': 

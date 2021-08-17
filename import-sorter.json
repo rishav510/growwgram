@@ -1,0 +1,51 @@
+{
+  "autoFormat": "onSave",
+  "quoteMark": "single",
+  "emptyLinesAfterAllImports": 2,
+  "trailingComma": "none",
+  "wrappingStyle": {
+    "maxBindingNamesPerLine": 3,
+    "maxDefaultAndBindingNamesPerLine": 3
+  },
+  "groupRules": [
+    "^react",
+    {},
+    "^config",
+    "shared",
+    "core",
+    "cs",
+    "deposits",
+    "moderator",
+    "payments",
+    "stocks",
+    "usStock",
+    "^../",
+    "^./",
+    {
+      "flags": "scripts"
+    }
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "removeLastSlashInPath": true,
+  "removeLastIndexInPath": true
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

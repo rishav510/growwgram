@@ -1,7 +1,4 @@
-import './gridView.css';
-
 import React from 'react';
-
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
 
@@ -11,7 +8,10 @@ import updatePageNumber
 import PostData from '../../../../utils/types/PostData';
 import ReduxState from '../../../../utils/types/ReduxState';
 
-class GridView extends React.PureComponent <Props, State>{
+import './gridView.css';
+
+
+class GridView extends React.Component <Props, State>{
 
   constructor(props: Props){
     super(props);

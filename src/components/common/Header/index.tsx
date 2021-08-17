@@ -1,11 +1,11 @@
-import './header.css';
-
 import React from 'react';
-
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import deleteCurrentUser from '../../../store/actionCreators/deleteUserDetails';
+
+import './header.css';
+
 
 const Header = (props: Props) => {
   return (
@@ -31,4 +31,6 @@ const Header = (props: Props) => {
 type Props = {
   deleteCurrentUser: Function,
 }
-export default connect (null, {deleteCurrentUser})(Header);
+
+const connectedHeader = connect (null, {deleteCurrentUser})(Header);
+export const MemoizedHeader = React.memo(connectedHeader);

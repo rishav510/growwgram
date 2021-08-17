@@ -1,17 +1,14 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
-import {
-  BrowserRouter,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import FirstScreen from './components/common/FirstScreen/FirstScreen';
-import Header from './components/common/Header/Header';
-import Popup from './components/common/Popup/Popup';
-import NewsFeed from './components/pages/NewsFeed/NewsFeed';
-import UserPage from './components/pages/UserPage/UserPage';
+import FirstScreen from './components/common/FirstScreen';
+import { MemoizedHeader as Header } from './components/common/Header';
+import { MemoizedPopup as Popup } from './components/common/Popup';
+import NewsFeed from './components/pages/NewsFeed';
+import UserPage from './components/pages/UserPage';
 import fetchResponseObject from './store/actionCreators/fetchResponseObject';
+
 
 class App extends React.Component <Props,State>{
 
@@ -23,7 +20,6 @@ class App extends React.Component <Props,State>{
   }
 
   componentDidMount = () => {
-    console.log('app mounted');
     setTimeout(() => {this.setState({firstScreen: false})}, 2000)
   }
 
@@ -47,17 +43,11 @@ class App extends React.Component <Props,State>{
 
 }
 
-type Props = any;
+type Props = {}
+
 type State = {
   firstScreen: boolean;
 };
 
-const mapStateToProps = (state:any) => {
 
-  return {
-    postDataList: state.postDataList,
-  }
-
-}
-
-export default connect (mapStateToProps, {fetchResponseObject})(App);
+export default connect (null, {fetchResponseObject})(App);

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import displayPopup from '../../../store/actionCreators/displayPopup';
 
+
 const StubButton = (props: Props) =>  {
 
   return (

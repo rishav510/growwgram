@@ -1,9 +1,11 @@
-import './popup.css';
-
+import React from 'react';
 import { connect } from 'react-redux';
 
 import removePopup from '../../../store/actionCreators/removePopup';
 import ReduxState from '../../../utils/types/ReduxState';
+
+import './popup.css';
+
 
 const Popup = (props: Props) => {
 
@@ -37,4 +39,5 @@ type Props = {
   removePopup: Function,
 }
 
-export default connect (mapStateToProps, {removePopup})(Popup);
+const connectedPopup = connect (mapStateToProps, {removePopup})(Popup);
+export const MemoizedPopup = React.memo(connectedPopup);

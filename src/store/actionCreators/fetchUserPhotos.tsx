@@ -1,7 +1,9 @@
 import unsplash from '../../utils/apis/unsplash';
+import Action from '../../utils/types/Action';
+
 
 const fetchUserPhotos = (username: string, page: number) => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch) => {
 
     try{
       dispatch({
@@ -9,7 +11,6 @@ const fetchUserPhotos = (username: string, page: number) => {
       });
       const photos = await unsplash.get(`/users/${username}/photos`,{params: {username, orderby: 'latest', page, stats: true}})
       if(photos === undefined)
-        console.log("empty response");
       dispatch({
         type: 'FETCH_USER_PHOTOS',
         payload: photos,
@@ -31,5 +32,7 @@ const fetchUserPhotos = (username: string, page: number) => {
     }
   }
 }
+
+type Dispatch = (action: Action) => {};
 
 export default fetchUserPhotos;

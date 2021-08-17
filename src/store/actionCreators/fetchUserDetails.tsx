@@ -1,7 +1,9 @@
 import unsplash from '../../utils/apis/unsplash';
+import Action from '../../utils/types/Action';
+
 
 const fetchUserDetails = (username: string) => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch) => {
     try{
 
       dispatch({
@@ -30,5 +32,7 @@ const fetchUserDetails = (username: string) => {
     }
   }
 }
+
+type Dispatch = (action: Action) => {};
 
 export default fetchUserDetails;
