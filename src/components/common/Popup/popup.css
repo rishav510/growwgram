@@ -2,12 +2,13 @@
 
 .whole-page-wrapper{
   position: fixed;
+  top: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.4);
   transition-duration: 0.2s;
-  z-index:-1;
   opacity: 0;
+  z-index: -1;
 }
 
 .popup-image-container{
@@ -19,7 +20,6 @@
   background-repeat: no-repeat;
   background-size: contain;
   margin: auto;
-
 }
 
 .popup-container{
@@ -50,7 +50,7 @@
 }
 
 .visible{
-  z-index: 2;
+  z-index: 5;
   opacity: 1;
 }
 

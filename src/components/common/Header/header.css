@@ -12,7 +12,7 @@
   align-items: center;
   border-top: none;
   justify-content: space-between;
-  z-index: 2;
+  z-index: 1;
 }
 
 .growwgram{
@@ -29,6 +29,7 @@
   width: 100vw;
   justify-content: center;
   height: 65px;
+  top: 0;
 }
 
 .explore:hover{

@@ -18,6 +18,7 @@ export type ResponseDataElement = {
 
 type ImageUrls = {
   raw: string,
+  small: string,
 }
 
 type User = {

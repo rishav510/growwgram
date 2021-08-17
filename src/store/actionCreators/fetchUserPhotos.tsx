@@ -9,12 +9,14 @@ const fetchUserPhotos = (username: string, page: number) => {
       dispatch({
         type: 'SET_USER_PHOTOS_LOADING',
       });
+      console.log("fetching photos");
       const photos = await unsplash.get(`/users/${username}/photos`,{params: {username, orderby: 'latest', page, stats: true}})
-      if(photos === undefined)
+
       dispatch({
         type: 'FETCH_USER_PHOTOS',
         payload: photos,
       })
+
     }
     catch(error)
     {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -16,8 +16,9 @@ import './imageCard.css';
 import 'react-placeholder/lib/reactPlaceholder.css';
 
 
-class ImageCard extends React.PureComponent <Props, State> {
+class ImageCard extends React.Component <Props, State> {
 
+  focusRef: RefObject<HTMLDivElement> = React.createRef();
   constructor(props: Props){
     super(props);
     this.state = {
@@ -26,9 +27,16 @@ class ImageCard extends React.PureComponent <Props, State> {
     }
   }
 
+  componentDidMount = () => {
+    (this.focusRef.current !== null)?
+    this.props.focusCb(this.focusRef):console.log();
+    this.focusRef = React.createRef();
+  }
+
   render(){
     return (
-      <div className="card-container">
+      <div ref = {(this.props.focusOn === this.props.postData.id)? this.focusRef: null}
+      className="card-container">
         {this.renderPostHeader()}
         {this.renderImageContainer()}
         {this.renderPostFooter()}
@@ -41,7 +49,7 @@ class ImageCard extends React.PureComponent <Props, State> {
     return (
       <div className="post-header">
         <div className="user-header-flex">
-          <Link to = "/user">
+          <Link to = {"/user/"+ postData.username} >
             <img src={postData?.profilePic} className="user-profile-pic" alt={postData?.alt_description} 
             onClick = {this.handleUserInfoClick}/>
           </Link>
@@ -63,7 +71,7 @@ class ImageCard extends React.PureComponent <Props, State> {
       <div className="image-container">
         <div className={`image-loader-container ${this.state.hasImageLoaded? 'transparent' : 'opaque' }`} >
         </div>
-        <img onLoad = {() => this.handleLoad()} className="image"  src={postData?.imageURL} alt={postData?.alt_description} />
+        <img onLoad = {() => this.handleLoad()} className="image"  src={postData?.bigImageURL} alt={postData?.alt_description} />
       </div>
     );
   }
@@ -77,7 +85,6 @@ class ImageCard extends React.PureComponent <Props, State> {
     return (
       <div className="post-footer">
           <section className="button-tray">
-
             <span 
             className={`
               material-icons-outlined material-icons heart
@@ -149,6 +156,8 @@ type State = {
 }
 
 type Props = {
+  focusCb: Function,
+  focusOn?: string,
   postData: PostData,
   fetchUserDetails: (username: string) => Action | Promise<void>,
   fetchUserPhotos: (username: string, nextPage: number) => Action | Promise<void>

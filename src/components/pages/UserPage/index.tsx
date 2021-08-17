@@ -22,11 +22,17 @@ import './userPage.css';
 const UserPage = (props: Props) => {
 
   const [gridViewSelected, setGridViewSelected] = useState(false);
+  const [focusOn, setFocusOn] = useState("");
   const {userData} = props; 
   const {userPhotos} = props;
 
-  const setListView = () => {
+  const setListView = (postId: string) => {
+    setFocusOn(postId);
     setGridViewSelected(false);
+  }
+
+  const clearScroll = () => {
+    setFocusOn("");
   }
 
   return (
@@ -57,14 +63,14 @@ const UserPage = (props: Props) => {
           material-icons-outlined
           ${gridViewSelected? '' : 'selected'}
           `}
-          onClick = {() => { setGridViewSelected(false)}}>crop_portrait</span>
+          onClick = {() => { setGridViewSelected(false); clearScroll()}}>crop_portrait</span>
 
       </div>
 
       <div className="user-page-photo-gallery">
       {
         gridViewSelected ?
-        <GridView onClick = {setListView} data={userPhotos} /> :
+        <GridView onClick = {setListView} data={userPhotos} totalPosts ={userData.posts}/> :
               <div className="user-feed-list">
                 <InfiniteScroll
 
@@ -74,6 +80,8 @@ const UserPage = (props: Props) => {
                     }
                   }}
 
+                  hasMore = {!props.isRequestFailed && props.userPhotos.length === props.userData.posts}
+
                   useWindow={true}
 
                   loader={
@@ -81,11 +89,9 @@ const UserPage = (props: Props) => {
                       <div className="loader-image-container">
                       </div>
                     </div>
-                  }
+                  }>
 
-                  hasMore={!props.isRequestFailed}>
-
-                  <ImageFeed isProfilePicClickable={false} feedData={userPhotos} />
+                  <ImageFeed focusOn = {focusOn} isProfilePicClickable={false} feedData={userPhotos} />
 
                 </InfiniteScroll>
               </div>
@@ -108,6 +114,7 @@ const renderUserDetails = (userData: UserData) => {
   const following = userData?.following;
   const firstName = userData?.firstName;
   const lastName = userData?.lastName;
+  const posts = userData?.posts;
   const profilePic = userData?.profilePic;
   const username = userData?.username;
   const bio = userData?.bio;
@@ -137,6 +144,7 @@ const renderUserDetails = (userData: UserData) => {
         </div>
 
         <div className="user-page-details-middle">
+          <span className="user-page-stat-data posts"><span className="bold">{posts}</span> posts</span>
           <span className="user-page-stat-data followers"><span className="bold">{followers}</span> followers</span>
           <span className="user-page-stat-data following"><span className="bold">{following}</span> following</span>
         </div>
@@ -152,6 +160,7 @@ const renderUserDetails = (userData: UserData) => {
 }
 
 const mapStateToProps = (state: ReduxState) => {
+  console.log(state);
   return {
     userData: state.currentUserDetails,
     userPhotos: state.currentUserPosts,

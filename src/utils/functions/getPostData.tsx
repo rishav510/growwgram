@@ -1,5 +1,6 @@
 import { ResponseDataElement } from '../types/ApiResponseObject';
 
+
 const getPostData = (responseDataElement: ResponseDataElement) => {
   const defaultLocation = {
     title: "",
@@ -10,7 +11,7 @@ const getPostData = (responseDataElement: ResponseDataElement) => {
     created_at, 
     description, 
     location:{title} = defaultLocation, 
-    urls:{raw}, 
+    urls:{raw, small}, 
     user: {
       username, 
       profile_image:{medium}
@@ -27,7 +28,8 @@ const getPostData = (responseDataElement: ResponseDataElement) => {
     created_at, 
     caption: description, 
     location: title, 
-    imageURL: raw, 
+    bigImageURL: raw, 
+    smallImageURL: small,
     apiUsername: username,
     username, 
     profilePic: medium, 

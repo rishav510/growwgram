@@ -59,7 +59,7 @@ a{
 
 .image{
   width: 600px;
-  max-height: 600px;
+
   object-fit: cover;
   overflow: hidden;
   margin: none;
@@ -68,6 +68,7 @@ a{
 .image-container{
   align-items: center;
   position: relative;
+  max-height: 600px;
   overflow: hidden;
   padding: 0;
   min-height: 200px;
@@ -127,7 +128,7 @@ a{
 }
 
 .post-footer{
-  margin-top: -4px;
+
   border: 1px solid var(--color-border-light);
   border-top: 2px solid var(--color-post-border-light);
 }
@@ -171,7 +172,7 @@ a{
 @media only screen and (max-width: 600px){
 
   .image-loader-container{
-    width: 100vw;
+    width: 100%;
   }
   .card-container{
     width: 100%;
@@ -179,9 +180,10 @@ a{
   }
   .image-container{
     width: 100vw;
+    max-height: 100vw;
   }
   .image{
-    width: 100vw;
+    width: 100%;
   }
   .user-profile-pic{
     width: 32px;

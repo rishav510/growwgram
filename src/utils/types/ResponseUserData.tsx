@@ -7,6 +7,7 @@ type ResponseUserData = {
   bio: string,
   photos: Array<Image>,
   username: string,
+  total_photos: number,
 };
 
 type ProfileURLs = {

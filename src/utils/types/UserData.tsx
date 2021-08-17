@@ -7,6 +7,7 @@ type UserData = {
   profilePic: string,
   photos: Array<Image>,
   username: string,
+  posts: number,
 }
 
 type Image = {

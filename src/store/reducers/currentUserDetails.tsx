@@ -29,11 +29,14 @@ const getNewUser = (responseUserData: ResponseUserData) => {
     bio,
     photos,
     username,
+    total_photos,
+
   } = responseUserData;
 
   return {
     firstName: first_name,
     lastName: last_name,
+    posts: total_photos,
     followers: followers_count,
     following: following_count,
     bio,

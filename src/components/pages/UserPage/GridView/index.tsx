@@ -13,27 +13,38 @@ import './gridView.css';
 
 class GridView extends React.Component <Props, State>{
 
+
+
   constructor(props: Props){
     super(props);
 
     this.state = {
-      ready: []
+      ready: [],
+      reachedBottom: false,
     }
   }
 
   render(){
 
     return (
+      
       <InfiniteScroll
-        hasMore = {!this.props.isRequestFailed}
+        hasMore = {!this.props.isRequestFailed && !this.state.reachedBottom}
         useWindow = {true}
         initialLoad = {false}
         loadMore = {() => {
           if(this.props.photosLoading)
             return null;
+          if(this.props.data.length === this.props.totalPosts)
+          {
+            this.setState({reachedBottom: true});
+            return null;
+          }
           this.props.fetchUserPhotos(this.props.username, this.props.nextPage);
+          
           }
         }
+
         loader={
         <div key={0} className="loader">
           <div className="loader-image-container">
@@ -46,27 +57,39 @@ class GridView extends React.Component <Props, State>{
           <div className="grid-container">
             {this.renderPhotos(this.props.data)}
           </div>
+          {(this.state.reachedBottom)?renderGridBottomMessage(): null}
         </div>
-
       </InfiniteScroll>
+
     );
   }
+
 
   renderPhotos = (posts: Array<PostData>) => {
     return posts?.map(
       (post,index) => 
-    <div className = "grid-view-photo-container" key={post.id} onClick ={() => this.props.onClick()}>
+    <div className = "grid-view-photo-container" key={post.id} onClick ={() => this.props.onClick(post.id)}>
         <div className={`grid-view-image-loader-container ${this.state.ready[index]? 'transparent' : 'opaque' }`} >
           <img  src="./loading-icon.svg"  alt=""/>
         </div>
         <img onLoad={this.handleImageLoad}
-          src = {post.imageURL} alt= {post.alt_description} className ="grid-view-photo"/>
+          src = {post.smallImageURL} alt= {post.alt_description} className ="grid-view-photo"/>
     </div>
     )
   }
 
   handleImageLoad = () => this.setState({ready: [...this.state.ready, true],});
 }
+
+const renderGridBottomMessage = () => {
+  
+  return(
+    <div className="grid-view-bottom-message">
+    You're all caught up! 
+    <span className ="material-icons material-icons-outlined bottom-heart">favorite</span>
+  </div>
+  );
+};
 
 const mapStateToProps = (state: ReduxState) => {
   return {
@@ -89,7 +112,9 @@ type Props = {
   nextPage: number,
   isRequestFailed: boolean,
   onClick: Function,
+  totalPosts?: number,
 }
 type State = {
   ready: Array<boolean>,
+  reachedBottom: boolean,
 }
