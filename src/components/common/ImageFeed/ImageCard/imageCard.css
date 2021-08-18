@@ -179,7 +179,7 @@ a{
     margin: 0;
   }
   .image-container{
-    width: 100vw;
+    width: 100%;
     max-height: 100vw;
   }
   .image{
@@ -190,7 +190,7 @@ a{
     height: 32px;
   }
   .post-header{
-    width: 100%;
+    width: 100vw;
   }
   .user-header-flex{
     width: 90%;
