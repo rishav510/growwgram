@@ -26,7 +26,7 @@ class ImageFeed extends React.Component<Props, State>{
   }
 
   focusCb = (x: RefObject<HTMLDivElement>) => {
-    x.current?.scrollIntoView({block: "center"});
+    x.current?.scrollIntoView({block: "nearest"});
   }
 }
 

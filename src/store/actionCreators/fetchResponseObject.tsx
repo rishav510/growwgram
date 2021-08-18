@@ -14,7 +14,7 @@ const fetchResponseObject = () => {
     
       cachedData = localStorage.getItem('FeedData');
       if(cachedData !== null)
-      console.log("cached stuff", JSON.parse(cachedData));
+
       dispatch({
         type: 'FETCH_RESPONSE_OBJECT',
         payload: response,

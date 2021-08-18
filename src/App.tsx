@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -35,12 +35,15 @@ class App extends React.Component <Props,State>{
             <Header/>
             <Popup/>
             <Switch>
-              <Route exact path = "/" component = {NewsFeed}/>
-              <Route path = {"/user/"+this.props.username} component = {UserPage}/> 
-              <Route component = {Page404}/>
+              
+              <Route exact path = "/" component = {NewsFeed} />
+              <Route exact path = {`/${this.props.username}`} 
+              render={props => (
+                <Suspense fallback={Page404}>
+                  <UserPage {...props} />
+                </Suspense>
+              )}/> 
             </Switch>
-
-            
         </BrowserRouter>
       </div>
     );

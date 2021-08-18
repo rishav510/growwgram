@@ -80,7 +80,7 @@ const UserPage = (props: Props) => {
                     }
                   }}
 
-                  hasMore = {!props.isRequestFailed && props.userPhotos.length === props.userData.posts}
+                  hasMore = {!props.isRequestFailed && (props.userData.posts !== props.userPhotos.length)}
 
                   useWindow={true}
 
@@ -160,7 +160,7 @@ const renderUserDetails = (userData: UserData) => {
 }
 
 const mapStateToProps = (state: ReduxState) => {
-  console.log(state);
+
   return {
     userData: state.currentUserDetails,
     userPhotos: state.currentUserPosts,
@@ -183,4 +183,3 @@ type Props = {
 };
 
 export default connect(mapStateToProps, { fetchUserPhotos, displayPopup })(UserPage);
-

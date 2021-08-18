@@ -45,7 +45,7 @@ class NewsFeed extends React.Component <Props>{
 }
 
 const mapStateToProps = (state: ReduxState) => {
-  console.log(state);
+
   return {
     postDataList: state.feedData,
     isRequestFailed: state.isRequestFailed,

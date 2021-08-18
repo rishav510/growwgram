@@ -25,9 +25,7 @@ class GridView extends React.Component <Props, State>{
   }
 
   render(){
-
     return (
-      
       <InfiniteScroll
         hasMore = {!this.props.isRequestFailed && !this.state.reachedBottom}
         useWindow = {true}
@@ -40,8 +38,7 @@ class GridView extends React.Component <Props, State>{
             this.setState({reachedBottom: true});
             return null;
           }
-          this.props.fetchUserPhotos(this.props.username, this.props.nextPage);
-          
+          this.props.fetchUserPhotos(this.props.username, this.props.nextPage);   
           }
         }
 
@@ -51,7 +48,7 @@ class GridView extends React.Component <Props, State>{
           </div>
         </div>
         }
-      >
+       >
 
         <div className="grid-wrapper">
           <div className="grid-container">
@@ -69,11 +66,15 @@ class GridView extends React.Component <Props, State>{
     return posts?.map(
       (post,index) => 
     <div className = "grid-view-photo-container" key={post.id} onClick ={() => this.props.onClick(post.id)}>
-        <div className={`grid-view-image-loader-container ${this.state.ready[index]? 'transparent' : 'opaque' }`} >
+      <div className="grid-view-photo-overlay">
+        <span className="grid-view-heart material-icons material-icons-outlined">favorite</span>
+      </div>
+        <div className={`grid-view-image-loader-container ${this.state.ready[index]? 'transparent grid-view-back' : 'opaque grid-view-front' }`} >
           <img  src="./loading-icon.svg"  alt=""/>
         </div>
         <img onLoad={this.handleImageLoad}
           src = {post.smallImageURL} alt= {post.alt_description} className ="grid-view-photo"/>
+  
     </div>
     )
   }

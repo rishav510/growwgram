@@ -49,12 +49,12 @@ class ImageCard extends React.Component <Props, State> {
     return (
       <div className="post-header">
         <div className="user-header-flex">
-          <Link to = {"/user/"+ postData.username} >
+          <Link to = {postData.username} >
             <img src={postData?.profilePic} className="user-profile-pic" alt={postData?.alt_description} 
             onClick = {this.handleUserInfoClick}/>
           </Link>
           <div className = "user-header-text">
-            <Link to = "/user">
+            <Link to = {postData.username}>
               <span className="username row"
               onClick ={this.handleUserInfoClick} >{postData?.username}</span>
             </Link>

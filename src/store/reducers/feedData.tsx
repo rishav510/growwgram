@@ -8,7 +8,7 @@ const feedData = (posts : Array<PostData> = [], action: Action) => {
   switch(action.type){
 
     case 'POPULATE_FEED':
-      console.log('hit populate feed');
+
       return [...action.payload];
     case 'FETCH_RESPONSE_OBJECT':
       const newPosts = action.payload?.data.map((responseData: ResponseDataElement) => getPostData(responseData));

@@ -17,7 +17,7 @@ const fetchUserDetails = (username: string) => {
     }
     catch(error)
     {
-      console.log(error);
+  
       dispatch({
         type: 'SET_API_REQUEST_ERROR',
         payload: {
