@@ -34,7 +34,7 @@ class NewsFeed extends React.Component <Props>{
             loadMore = {() => this.props.fetchResponseObject()}
             useWindow = {true}
             hasMore = {!this.props.isRequestFailed}>
-            {<ImageFeed isProfilePicClickable = {true} feedData = {this.props.postDataList}/>}
+            {<ImageFeed feedData = {this.props.postDataList}/>}
             
           </InfiniteScroll>
           {this.props.isRequestFailed?<ErrorDialog/>:null}

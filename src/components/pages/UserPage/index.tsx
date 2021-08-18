@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import displayPopup from '../../../store/actionCreators/displayPopup';
 import fetchUserPhotos from '../../../store/actionCreators/fetchUserPhotos';
@@ -25,7 +26,7 @@ const UserPage = (props: Props) => {
   const [focusOn, setFocusOn] = useState("");
   const {userData} = props; 
   const {userPhotos} = props;
-
+  const location = useLocation();
   const setListView = (postId: string) => {
     setFocusOn(postId);
     setGridViewSelected(false);
@@ -35,6 +36,19 @@ const UserPage = (props: Props) => {
     setFocusOn("");
   }
 
+  const checkRoute = () => {
+    if(location.pathname !== `/${props.userData?.username}`)
+    {
+      console.log(location.pathname);
+      console.log(props.userData?.username);
+    }
+  }
+
+  useEffect (() => {
+    checkRoute();
+  })
+  const numbersMatch = (props.userData?.posts && props.userPhotos && (props.userData?.posts !== props.userPhotos.length))?true:false;
+  
   return (
     <>
     <div className={`user-page-wrapper ${props.isRequestFailed? 'hidden' : ''}`}>
@@ -80,7 +94,7 @@ const UserPage = (props: Props) => {
                     }
                   }}
 
-                  hasMore = {!props.isRequestFailed && (props.userData.posts !== props.userPhotos.length)}
+                  hasMore = {!props.isRequestFailed && numbersMatch}
 
                   useWindow={true}
 
@@ -91,7 +105,7 @@ const UserPage = (props: Props) => {
                     </div>
                   }>
 
-                  <ImageFeed focusOn = {focusOn} isProfilePicClickable={false} feedData={userPhotos} />
+                  <ImageFeed focusOn = {focusOn} feedData={userPhotos} />
 
                 </InfiniteScroll>
               </div>
@@ -123,7 +137,7 @@ const renderUserDetails = (userData: UserData) => {
     <div className="user-page-header-flex">
 
       <div className="user-page-profile-pic-container">
-        <img className="user-page-profile-pic" src={profilePic} alt={userData.username} />
+        <img className="user-page-profile-pic" src={profilePic} alt={userData?.username} />
       </div>
 
       <div className="user-page-details">

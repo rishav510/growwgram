@@ -162,7 +162,6 @@ type Props = {
   fetchUserDetails: (username: string) => Action | Promise<void>,
   fetchUserPhotos: (username: string, nextPage: number) => Action | Promise<void>
   displayPopup: () => Action,
-  isProfilePicClickable: boolean,
 }
 
 export default connect (null, {displayPopup, fetchUserDetails, fetchUserPhotos})(ImageCard);

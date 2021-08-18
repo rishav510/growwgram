@@ -22,7 +22,7 @@ class ImageFeed extends React.Component<Props, State>{
   }
   renderPosts = (imageDataArray: Array<PostData>) => {
     return imageDataArray.map(postData => <ImageCard focusOn = {this.props.focusOn} focusCb = {this.focusCb}
-      isProfilePicClickable = {this.props.isProfilePicClickable} key = {postData.id} postData = {postData}/>)
+       key = {postData.id} postData = {postData}/>)
   }
 
   focusCb = (x: RefObject<HTMLDivElement>) => {
@@ -35,7 +35,6 @@ export default ImageFeed;
 type Props = {
   focusOn?: string,
   feedData: Array<PostData>,
-  isProfilePicClickable: boolean,
 }
 
 type State = {

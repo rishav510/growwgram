@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -29,7 +29,6 @@ class App extends React.Component <Props,State>{
     
     return (
       <div>
-       
         <BrowserRouter>
             {this.state.firstScreen? <FirstScreen/>: null}
             <Header/>
@@ -37,12 +36,9 @@ class App extends React.Component <Props,State>{
             <Switch>
               
               <Route exact path = "/" component = {NewsFeed} />
-              <Route exact path = {`/${this.props.username}`} 
-              render={props => (
-                <Suspense fallback={Page404}>
-                  <UserPage {...props} />
-                </Suspense>
-              )}/> 
+              
+              <Route  path = "/:username" component = {UserPage}/>
+              <Route  path = "/page_not_found" component = {Page404}/>
             </Switch>
         </BrowserRouter>
       </div>
@@ -62,7 +58,7 @@ type Props = {
 }
 
 type State = {
-  firstScreen: boolean;
+  firstScreen: boolean,
 };
 
 
