@@ -18,7 +18,7 @@ const LoadingScreen = (props: Props) => {
 
 const mapStateToProps = (state: ReduxState) => {
   return {
-    pageLoading: state.userDetailsLoading
+    pageLoading: state.userDetailsLoading,
   }
 }
 

@@ -63,7 +63,7 @@ const mapStateToProps = (state: ReduxState) => {
 
 type Props = {
   username?: string,
-  getCachedFeed: Function,
+  getCachedFeed: () => {},
   userDetailsLoading: boolean,
 }
 
