@@ -1,5 +1,5 @@
 :root {
-  --color-border-light: rgb(223,223,223);
+  --color-border-light: rgb(204, 204, 204);
   --color-post-border-light: rgb(239,239,239);
   --color-text-gray: rgb(127,127,127);
   --color-red: red;
@@ -32,6 +32,8 @@ body{
   min-width: 230px;
   font-family: 'Nunito', sans-serif;
 }
+
+
 
 @media only screen and (max-width: 360px) {
 

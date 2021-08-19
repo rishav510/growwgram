@@ -87,7 +87,6 @@ const renderGridBottomMessage = () => {
   return(
     <div className="grid-view-bottom-message">
     You're all caught up! 
-    <span className ="material-icons material-icons-outlined bottom-heart">favorite</span>
   </div>
   );
 };

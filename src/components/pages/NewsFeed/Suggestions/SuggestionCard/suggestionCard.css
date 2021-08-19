@@ -1,0 +1,28 @@
+.suggestion-card-container{
+  display: flex;
+  align-items: center;
+}
+
+.suggestion-card-details{
+  padding-left: 16px;
+}
+.suggestion-card-profile-pic{
+  padding: 8px 0;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+.suggestion-card-username{
+  font-family: sans-serif;
+  font-weight: 400;
+  color: black;
+}
+
+.suggestion-card-username:hover{
+  text-decoration: underline;
+}
+
+.suggestion-card-status{
+  font-family: sans-serif;
+  font-weight: 200;
+}

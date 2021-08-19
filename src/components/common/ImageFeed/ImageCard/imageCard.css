@@ -66,18 +66,17 @@ a{
 }
 
 .image-container{
+  display: flex;
   align-items: center;
   position: relative;
-  max-height: 600px;
+  height: 600px;
   overflow: hidden;
   padding: 0;
-  min-height: 200px;
-
+  background-color: var(--color-border-light)
 }
 
 .image-loader-container{
   width: 100%;
-  min-height: 200px;
   height: 100%;
   position: absolute;
   background: rgb(233, 233, 233);

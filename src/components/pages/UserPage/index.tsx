@@ -21,8 +21,24 @@ import './userPage.css';
 
 const UserPage = (props: Props) => {
 
+  const handleScroll = () => {
+    window.onscroll = () => {
+      if(window.scrollY > 4000)
+      {
+        setFloatingButtonVisible(true);
+      }
+        
+      else
+        setFloatingButtonVisible(false);
+    }
+    setFloatingButtonVisible(false);
+  }
+
+  window.addEventListener('scroll', handleScroll, true);
+
   const [gridViewSelected, setGridViewSelected] = useState(false);
   const [focusOn, setFocusOn] = useState("");
+  const [floatingButtonVisible, setFloatingButtonVisible] = useState(false);
   const {userData} = props; 
   const {userPhotos} = props;
 
@@ -31,16 +47,18 @@ const UserPage = (props: Props) => {
     setGridViewSelected(false);
   }
 
-  const loadingStatus = () => {
-  }
-
   const clearScroll = () => {
     setFocusOn("");
   }
 
 
+
+
   useEffect (() => {
+    
   })
+
+
   const numbersMatch = (props.userData?.posts && props.userPhotos && (props.userData?.posts !== props.userPhotos.length))?true:false;
   
   return (
@@ -104,10 +122,16 @@ const UserPage = (props: Props) => {
                 </InfiniteScroll>
               </div>
           }
+        {(gridViewSelected)? null:
+          <button className ={`grid-view-button-floating ${(floatingButtonVisible)? 'opaque': 'transparent'}`}
+          onClick = {() => {setGridViewSelected(true); window.scrollTo(0,0)}}>
+            <span className = "material-icons material-icons-outlined">grid_on</span>
+          </button>
+        } 
+        
       </div>    
     </div>
       {props.isRequestFailed? <ErrorDialog/>: null}
-      {loadingStatus()}
     </>
   )
 

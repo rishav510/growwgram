@@ -30,7 +30,7 @@ class App extends React.Component <Props,State>{
   render(){
     
     return (
-      <div>
+      <div className = "app-wrapper">
         <BrowserRouter>
             {this.state.firstScreen? <FirstScreen/>: null}
             <Header/>
@@ -54,7 +54,7 @@ class App extends React.Component <Props,State>{
 }
 
 const mapStateToProps = (state: ReduxState) => {
-
+  console.log(state);
   return {
     username: state.currentUserDetails?.username,
     userDetailsLoading: state.userDetailsLoading,

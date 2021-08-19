@@ -147,6 +147,25 @@
 .hidden{
   display: none;
 }
+
+.grid-view-button-floating{
+  position: fixed;
+  bottom: 5%;
+  right: 20%;
+  color: white;
+  background: var(--color-medium-spring-green);
+  padding: 16px;
+  border: none;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.floating-button-transparent{
+  opacity: 0;
+}
+
 @media only screen and (max-width:800px){
   .user-page-photo-gallery{
     width: 100vw;
@@ -216,4 +235,10 @@
   .post-header{
     max-width: 100%;
   }
+
+  .grid-view-button-floating{
+    right: 16px;
+    bottom: 16px;
+  }
 }
+
