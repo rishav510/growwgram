@@ -37,7 +37,7 @@ const Header = (props: Props) => {
 }
 
 type Props = {
-  deleteCurrentUser: Function,
+  deleteCurrentUser: () => {},
   freeCache: () => {},
 }
 

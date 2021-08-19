@@ -36,7 +36,7 @@ const mapStateToProps = (state: ReduxState) => {
 
 type Props = {
   visible: boolean,
-  removePopup: Function,
+  removePopup: () => {},
 }
 
 const connectedPopup = connect (mapStateToProps, {removePopup})(Popup);

@@ -67,6 +67,7 @@
 .grid-view-bottom-message{
   padding: 16px;
   text-align: center;
+  font-size: medium;
   font-family: 'Nunito', sans-serif;
   color: var(--color-text-gray)
 }
@@ -88,6 +89,6 @@
     grid-auto-rows: 20vw;
   }
   .grid-view-bottom-message{
-    font-size: small;
+    font-size: medium;
   }
 }

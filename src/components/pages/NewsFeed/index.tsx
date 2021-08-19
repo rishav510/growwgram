@@ -56,7 +56,7 @@ const mapStateToProps = (state: ReduxState) => {
 type Props = {
   postDataList: Array<PostData>,
   isRequestFailed: boolean,
-  fetchResponseObject: Function,
+  fetchResponseObject: () => {},
 }
 
 export default connect (mapStateToProps, {fetchResponseObject,fetchUserDetails, deleteCurrentUser})(NewsFeed);
