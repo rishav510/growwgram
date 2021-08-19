@@ -31,6 +31,7 @@ class NewsFeed extends React.Component <Props>{
                 </div>
               </div>
             }
+            initialLoad = {true}
             loadMore = {() => this.props.fetchResponseObject()}
             useWindow = {true}
             hasMore = {!this.props.isRequestFailed}>

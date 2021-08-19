@@ -1,21 +1,24 @@
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import ReduxState from '../../../utils/types/ReduxState';
+import {
+  MemoizedUserDetailsPlaceholder
+} from '../../pages/UserPage/UserDetailsPlaceholder';
+
+import './loadingScreen.css';
 
 
 const LoadingScreen = (props: Props) => {
   return(
-    <>
-      <div>Loading ... </div>
-      {props.fetchingDetails? <Redirect to = "/"></Redirect> : null}
-    </>
+    <div className = "user-page-wrapper">
+      <MemoizedUserDetailsPlaceholder/>
+    </div>
   )
 }
 
 const mapStateToProps = (state: ReduxState) => {
   return {
-    fetchingDetails: state.userDetailsLoading
+    pageLoading: state.userDetailsLoading
   }
 }
 

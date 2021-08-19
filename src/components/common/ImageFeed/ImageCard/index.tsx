@@ -28,8 +28,8 @@ class ImageCard extends React.Component <Props, State> {
   }
 
   componentDidMount = () => {
-    (this.focusRef.current !== null)?
-    this.props.focusCb(this.focusRef):console.log();
+    if(this.focusRef.current !== null)
+      this.props.focusCb(this.focusRef);
     this.focusRef = React.createRef();
   }
 

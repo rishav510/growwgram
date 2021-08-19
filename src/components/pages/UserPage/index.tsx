@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 
 import displayPopup from '../../../store/actionCreators/displayPopup';
 import fetchUserPhotos from '../../../store/actionCreators/fetchUserPhotos';
@@ -26,26 +25,21 @@ const UserPage = (props: Props) => {
   const [focusOn, setFocusOn] = useState("");
   const {userData} = props; 
   const {userPhotos} = props;
-  const location = useLocation();
+
   const setListView = (postId: string) => {
     setFocusOn(postId);
     setGridViewSelected(false);
+  }
+
+  const loadingStatus = () => {
   }
 
   const clearScroll = () => {
     setFocusOn("");
   }
 
-  const checkRoute = () => {
-    if(location.pathname !== `/${props.userData?.username}`)
-    {
-      console.log(location.pathname);
-      console.log(props.userData?.username);
-    }
-  }
 
   useEffect (() => {
-    checkRoute();
   })
   const numbersMatch = (props.userData?.posts && props.userPhotos && (props.userData?.posts !== props.userPhotos.length))?true:false;
   
@@ -113,6 +107,7 @@ const UserPage = (props: Props) => {
       </div>    
     </div>
       {props.isRequestFailed? <ErrorDialog/>: null}
+      {loadingStatus()}
     </>
   )
 
@@ -170,7 +165,9 @@ const renderUserDetails = (userData: UserData) => {
 
       </div>
     </div>
+
   )
+
 }
 
 const mapStateToProps = (state: ReduxState) => {

@@ -1,0 +1,24 @@
+.loading-screen-spinner{
+
+  margin-top: 50px;
+  width: 400px;
+  height: 400px;
+  background: url('../../../resources/spinner_loadingPage.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.rule{
+  border-top: 1px solid gray;
+  text-align: center;
+}
+
+@media only screen and (max-width: 800px){
+  .loading-screen-spinner{
+    width: 200px;
+    height: 200px;
+  }
+  .rule{
+    width: 100%;
+  }
+}

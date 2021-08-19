@@ -60,7 +60,7 @@ a{
 .image{
   width: 600px;
 
-  object-fit: cover;
+  object-fit: scale-down;
   overflow: hidden;
   margin: none;
 }

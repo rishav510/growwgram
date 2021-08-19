@@ -4,21 +4,30 @@ import unsplash from '../../utils/apis/unsplash';
 const fetchResponseObject = () => {
   return async (dispatch : Function, getState: Function) => {
     let response;
-    let cachedData = localStorage.getItem('FeedData');
-
+    const cachedData = localStorage.getItem('FeedData');
+    
     try{
 
-      
-      response = await unsplash.get('/photos/random', {params: {count: 10}})
-      localStorage.setItem('FeedData', JSON.stringify(getState().feedData.slice(0,10)));
-    
-      cachedData = localStorage.getItem('FeedData');
-      if(cachedData !== null)
+      if (cachedData && getState().feedData.length === 0)
+      {
+        const parsedCacheData = JSON.parse(cachedData);
 
-      dispatch({
-        type: 'FETCH_RESPONSE_OBJECT',
-        payload: response,
-      });
+        dispatch({
+          type: 'GET_CACHED_FEED',
+          payload: parsedCacheData,
+        })
+      }
+
+      else
+      {
+        response = await unsplash.get('/photos/random', {params: {count: 10}});
+
+        dispatch({
+          type: 'FETCH_RESPONSE_OBJECT',
+          payload: response,
+        });
+      }
+     
 
       
     }
@@ -29,6 +38,10 @@ const fetchResponseObject = () => {
           status: error.response?.status,
         }
       })
+    }
+
+    finally{
+      localStorage.setItem('FeedData', JSON.stringify(getState().feedData.slice(0,10)));
     }
     
   }
