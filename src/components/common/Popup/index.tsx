@@ -19,10 +19,15 @@ const Popup = (props: Props) => {
     onClick = {() => props.removePopup()}
     >
       <div className="popup-container">
+        <div className = "popup-header">
+          <div className="popup-image-container"></div>
+          <div className = "popup-text">
+            <h2 className ="popup-heading">{heading}</h2>
+            <p>{message}</p>
+          </div>
 
-        <h2>{heading}</h2>
-        <div className="popup-image-container"></div>
-        <p>{message}</p>
+        </div>
+
       </div>
     </div>
   )

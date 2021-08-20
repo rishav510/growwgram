@@ -24,7 +24,7 @@ class NewsFeed extends React.Component <Props>{
   }
 
   componentDidUpdate = () => {
-    this.props.fetchSuggestions();
+    
   }
   
   render(){

@@ -12,18 +12,17 @@
 }
 
 .popup-image-container{
-  padding: 20px 0;
   width: 150px;
   height: 150px;
   background-image: url('./images/calendar.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  margin: auto;
+
 }
 
 .popup-container{
-  text-align: center;
+  text-align: left;
   border-radius: 15px;
   position: absolute;
   left: 50%;
@@ -32,21 +31,34 @@
   font-family: 'Nunito' ,sans-serif;
   font-size: medium;
   padding: 16px;
-  min-height: 250px;
   transform: translate(-50%, -50%);
   background-color: var(--color-white);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition-duration: 0.3s;
 }
 
-.popup-container > h2{
-  text-align: center;
-  font-size: 2em;
-  margin: 0 0 16px 0;
+.popup-text{
+  padding-left: 16px;
+
 }
 
+.popup-header{
+  display: flex;
+  justify-content: flex-start;
+  align-items: top;
+}
+.popup-text > h2{
+
+  font-size: 2em;
+  text-align: left;
+  font-size: 2em;
+  margin: 0 0 32px 0;
+}
+
+
 .popup-container > p{
-  font-size: 1.5em;
+  font-family: 'Roboto';
+  font-weight: 400;
 }
 
 .visible{
@@ -65,14 +77,35 @@
     min-height: 30%;
     border-radius: 25px;
     margin: 10px 0 0 0;
+
+  }
+
+  .popup-text{
+    padding-left: 0;
     text-align: center;
   }
 
+  .popup-text > h2{
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .popup-header{
+    flex-direction: column-reverse;
+  }
   .popup-container > h2{
     font-size: 2em;
+
+    font-weight: 400;
   }
 
   .popup-container > p{
     font-size: 1em;
+    
+  }
+
+  .popup-image-container{
+    align-self: center;
+    margin-top: 16px;
   }
 }

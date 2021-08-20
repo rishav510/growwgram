@@ -21,20 +21,6 @@ import './userPage.css';
 
 const UserPage = (props: Props) => {
 
-  const handleScroll = () => {
-    window.onscroll = () => {
-      if(window.scrollY > 4000)
-      {
-        setFloatingButtonVisible(true);
-      }
-        
-      else
-        setFloatingButtonVisible(false);
-    }
-    setFloatingButtonVisible(false);
-  }
-
-  window.addEventListener('scroll', handleScroll, true);
 
   const [gridViewSelected, setGridViewSelected] = useState(false);
   const [focusOn, setFocusOn] = useState("");
@@ -52,18 +38,26 @@ const UserPage = (props: Props) => {
   }
 
 
-
-
   useEffect (() => {
-    
-  })
+    const handleScroll = () => {
+
+      if(window.scrollY > 4000)
+        setFloatingButtonVisible(true);
+        
+      else
+        setFloatingButtonVisible(false);
+      
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  },[])
 
 
   const numbersMatch = (props.userData?.posts && props.userPhotos && (props.userData?.posts !== props.userPhotos.length))?true:false;
   
   return (
     <>
-    <div className={`user-page-wrapper ${props.isRequestFailed? 'hidden' : ''}`}>
+    <div className={`user-page-wrapper ${props.isRequestFailed? 'hidden' : ''}`} id = "userPageWrapper">
       {
       (props.isRequestFailed)?
           null:

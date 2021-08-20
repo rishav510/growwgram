@@ -9,6 +9,7 @@ import Page404 from './components/common/Page404';
 import { MemoizedPopup as Popup } from './components/common/Popup';
 import NewsFeed from './components/pages/NewsFeed';
 import UserPage from './components/pages/UserPage';
+import fetchSuggestions from './store/actionCreators/fetchSuggestions';
 import getCachedFeed from './store/actionCreators/getCachedFeed';
 import ReduxState from './utils/types/ReduxState';
 
@@ -27,6 +28,9 @@ class App extends React.Component <Props,State>{
     setTimeout(() => {this.setState({firstScreen: false})}, 2000);
   }
 
+  componentDidUpdate = () => {
+    this.props.fetchSuggestions();
+  }
   render(){
     
     return (
@@ -65,6 +69,7 @@ type Props = {
   username?: string,
   getCachedFeed: () => {},
   userDetailsLoading: boolean,
+  fetchSuggestions: () => {},
 }
 
 type State = {
@@ -73,4 +78,4 @@ type State = {
 };
 
 
-export default connect (mapStateToProps, {getCachedFeed})(App);
+export default connect (mapStateToProps, {getCachedFeed, fetchSuggestions})(App);
