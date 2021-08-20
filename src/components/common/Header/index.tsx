@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import deleteCurrentUser from '../../../store/actionCreators/deleteUserDetails';
+import fetchSuggestions from '../../../store/actionCreators/fetchSuggestions';
 import freeCache from '../../../store/actionCreators/freeCache';
 
 import './header.css';
@@ -13,6 +14,7 @@ const Header = (props: Props) => {
   const handleExplore = () => {
     props.deleteCurrentUser();
     props.freeCache();
+    props.fetchSuggestions();
     window.location.href = "/";
   }
 
@@ -39,7 +41,8 @@ const Header = (props: Props) => {
 type Props = {
   deleteCurrentUser: () => {},
   freeCache: () => {},
+  fetchSuggestions: () => {},
 }
 
-const connectedHeader = connect (null, {deleteCurrentUser, freeCache})(Header);
+const connectedHeader = connect (null, {deleteCurrentUser, freeCache, fetchSuggestions})(Header);
 export const MemoizedHeader = React.memo(connectedHeader);
