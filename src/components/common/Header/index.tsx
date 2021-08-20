@@ -14,7 +14,6 @@ const Header = (props: Props) => {
   const handleExplore = () => {
     props.deleteCurrentUser();
     props.freeCache();
-    props.fetchSuggestions();
     window.location.href = "/";
   }
 

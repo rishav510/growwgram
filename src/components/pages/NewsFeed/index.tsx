@@ -21,6 +21,9 @@ class NewsFeed extends React.Component <Props>{
 
   componentDidMount = () => {
     deleteCurrentUser();
+  }
+
+  componentDidUpdate = () => {
     this.props.fetchSuggestions();
   }
   
