@@ -26,10 +26,10 @@ class App extends React.Component <Props,State>{
 
   componentDidMount = () => {
     setTimeout(() => {this.setState({firstScreen: false})}, 2000);
+    this.props.fetchSuggestions();
   }
 
   componentDidUpdate = () => {
-    this.props.fetchSuggestions();
   }
   render(){
     
